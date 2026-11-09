@@ -1,0 +1,6 @@
+{
+  "name": "LexCorp SEC Document & Billing Studio",
+  "description": "Generate professional Quotations, Billing Statements, Service Invoices, and Acknowledgement Receipts for SEC Philippines corporate transactions including Registration, Amendment, Increase of ACS, and Dissolution.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Prevent iOS Safari auto-zoom on input focus when screen width < 640px */
+  @media screen and (max-width: 640px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+}
+
+/* Standard A4 Paper Geometry (210mm x 297mm) */
+.a4-paper-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 15mm;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.pt-safe {
+  padding-top: max(0px, env(safe-area-inset-top));
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .a4-paper-sheet,
+  .print-only-container {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    transform: none !important;
+  }
+}
