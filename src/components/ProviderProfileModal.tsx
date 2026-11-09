@@ -43,8 +43,8 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  const inputClass =
-    'w-full min-h-[42px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-md focus:outline-none focus:border-slate-900 dark:focus:border-slate-300';
+  const textareaClass =
+    'w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300';
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/70 backdrop-blur-xs p-0 sm:p-4 no-print">
@@ -101,12 +101,12 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Studio / App Title (Header & Home Screen Name)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.appBrandName}
                   onChange={(e) => updateField('appBrandName', e.target.value)}
                   placeholder="LexCorp SEC Studio"
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
 
@@ -114,13 +114,13 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Icon Badge Initials (Max 4)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   maxLength={4}
                   value={form.appIconMonogram}
                   onChange={(e) => updateField('appIconMonogram', e.target.value.toUpperCase())}
                   placeholder="SEC"
-                  className={`${inputClass} font-mono uppercase`}
+                  className={`${textareaClass} font-mono uppercase`}
                 />
               </div>
             </div>
@@ -149,11 +149,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Firm / Service Provider Name (Printed on A4 Document Letterhead)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.firmName}
                   onChange={(e) => updateField('firmName', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
 
@@ -161,11 +161,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Practice Subtitle / Specialization
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.practiceTitle}
                   onChange={(e) => updateField('practiceTitle', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
 
@@ -173,11 +173,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Tax Identification Number (TIN)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.tin}
                   onChange={(e) => updateField('tin', e.target.value)}
-                  className={`${inputClass} font-mono`}
+                  className={`${textareaClass} font-mono`}
                 />
               </div>
 
@@ -185,11 +185,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   SEC / PRC / IBP Accreditation Line
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.accreditationNo}
                   onChange={(e) => updateField('accreditationNo', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
 
@@ -197,11 +197,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Principal Office Address
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.address}
                   onChange={(e) => updateField('address', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
 
@@ -209,11 +209,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Contact Email
                 </label>
-                <input
-                  type="email"
+                <textarea
+                  rows={3}
                   value={form.email}
                   onChange={(e) => updateField('email', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
 
@@ -221,11 +221,11 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Telephone / Mobile Number
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.phone}
                   onChange={(e) => updateField('phone', e.target.value)}
-                  className={`${inputClass} font-mono`}
+                  className={`${textareaClass} font-mono`}
                 />
               </div>
             </div>
@@ -241,44 +241,44 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Bank & Branch
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.bankName}
                   onChange={(e) => updateField('bankName', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
               <div>
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Bank Account Name
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.bankAccountName}
                   onChange={(e) => updateField('bankAccountName', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
               <div>
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Bank Account Number
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.bankAccountNo}
                   onChange={(e) => updateField('bankAccountNo', e.target.value)}
-                  className={`${inputClass} font-mono`}
+                  className={`${textareaClass} font-mono`}
                 />
               </div>
               <div className="sm:col-span-3">
                 <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Additional Remittance Instructions (GCash / Maya / Check Payable To)
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  rows={3}
                   value={form.altPaymentInfo}
                   onChange={(e) => updateField('altPaymentInfo', e.target.value)}
-                  className={inputClass}
+                  className={textareaClass}
                 />
               </div>
             </div>
@@ -290,44 +290,44 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
               <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Authorized Signatory Name
               </label>
-              <input
-                type="text"
+              <textarea
+                rows={3}
                 value={form.signatoryName}
                 onChange={(e) => updateField('signatoryName', e.target.value)}
-                className={inputClass}
+                className={textareaClass}
               />
             </div>
             <div>
               <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Signatory Title / Role
               </label>
-              <input
-                type="text"
+              <textarea
+                rows={3}
                 value={form.signatoryTitle}
                 onChange={(e) => updateField('signatoryTitle', e.target.value)}
-                className={inputClass}
+                className={textareaClass}
               />
             </div>
             <div>
               <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Prepared By Name
               </label>
-              <input
-                type="text"
+              <textarea
+                rows={3}
                 value={form.preparedByName}
                 onChange={(e) => updateField('preparedByName', e.target.value)}
-                className={inputClass}
+                className={textareaClass}
               />
             </div>
             <div>
               <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Prepared By Role
               </label>
-              <input
-                type="text"
+              <textarea
+                rows={3}
                 value={form.preparedByTitle}
                 onChange={(e) => updateField('preparedByTitle', e.target.value)}
-                className={inputClass}
+                className={textareaClass}
               />
             </div>
           </div>

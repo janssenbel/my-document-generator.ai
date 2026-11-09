@@ -784,11 +784,11 @@ export default function App() {
                   <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     SEC Transaction Title / Subject
                   </label>
-                  <input
-                    type="text"
+                  <textarea
+                    rows={3}
                     value={doc.transactionTitle}
                     onChange={(e) => setDoc({ ...doc, transactionTitle: e.target.value })}
-                    className={inputBaseClass}
+                    className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                   />
                 </div>
 
@@ -797,22 +797,22 @@ export default function App() {
                     <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       SEC Portal / Division Track
                     </label>
-                    <input
-                      type="text"
+                    <textarea
+                      rows={3}
                       value={doc.secPortalSystem}
                       onChange={(e) => setDoc({ ...doc, secPortalSystem: e.target.value })}
-                      className={inputBaseClass}
+                      className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                     />
                   </div>
                   <div>
                     <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       Estimated Processing Timeline
                     </label>
-                    <input
-                      type="text"
+                    <textarea
+                      rows={3}
                       value={doc.processingTimeline}
                       onChange={(e) => setDoc({ ...doc, processingTimeline: e.target.value })}
-                      className={inputBaseClass}
+                      className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                     />
                   </div>
                 </div>
@@ -822,10 +822,10 @@ export default function App() {
                     Scope of Corporate Secretarial Assistance
                   </label>
                   <textarea
-                    rows={3}
+                    rows={4}
                     value={doc.scopeSummary}
                     onChange={(e) => setDoc({ ...doc, scopeSummary: e.target.value })}
-                    className={`${inputBaseClass} leading-relaxed`}
+                    className="w-full min-h-[96px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                   />
                 </div>
 
@@ -918,7 +918,7 @@ export default function App() {
                               handleUpdateLineItem(item.id, { description: e.target.value })
                             }
                             placeholder="Line item title and description"
-                            className="w-full min-h-[82px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-medium text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+                            className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-medium text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                           />
                         </div>
 
@@ -933,7 +933,7 @@ export default function App() {
                               handleUpdateLineItem(item.id, { subtext: e.target.value })
                             }
                             placeholder="Statutory basis or sub-details (optional)"
-                            className="w-full min-h-[82px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+                            className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                           />
                         </div>
 
@@ -991,15 +991,15 @@ export default function App() {
             {activeTab === 'client' && (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div>
+                  <div className="sm:col-span-3">
                     <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       Document Ref. No.
                     </label>
-                    <input
-                      type="text"
+                    <textarea
+                      rows={3}
                       value={doc.referenceNo}
                       onChange={(e) => setDoc({ ...doc, referenceNo: e.target.value })}
-                      className={`${inputBaseClass} font-mono`}
+                      className="w-full min-h-[84px] px-3 py-2 font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                     />
                   </div>
                   <div>
@@ -1013,7 +1013,7 @@ export default function App() {
                       className={`${inputBaseClass} font-mono`}
                     />
                   </div>
-                  <div>
+                  <div className="sm:col-span-2">
                     <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       Valid Until / Due Date
                     </label>
@@ -1026,7 +1026,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-3.5">
                   <div className="font-semibold text-slate-800 dark:text-slate-200">
                     Client Corporation / Incorporator Details
                   </div>
@@ -1035,8 +1035,8 @@ export default function App() {
                     <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       Corporate Name / Proposed Company Name
                     </label>
-                    <input
-                      type="text"
+                    <textarea
+                      rows={3}
                       value={doc.client.companyName}
                       onChange={(e) =>
                         setDoc({
@@ -1044,7 +1044,7 @@ export default function App() {
                           client: { ...doc.client, companyName: e.target.value },
                         })
                       }
-                      className={inputBaseClass}
+                      className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                     />
                   </div>
 
@@ -1053,8 +1053,8 @@ export default function App() {
                       <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         SEC Registration No.
                       </label>
-                      <input
-                        type="text"
+                      <textarea
+                        rows={3}
                         value={doc.client.secRegNo}
                         onChange={(e) =>
                           setDoc({
@@ -1063,15 +1063,15 @@ export default function App() {
                           })
                         }
                         placeholder="e.g., CS201948219 or For Registration"
-                        className={`${inputBaseClass} font-mono`}
+                        className="w-full min-h-[84px] px-3 py-2 font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                       />
                     </div>
                     <div>
                       <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         Client Corporate TIN
                       </label>
-                      <input
-                        type="text"
+                      <textarea
+                        rows={3}
                         value={doc.client.tin}
                         onChange={(e) =>
                           setDoc({
@@ -1080,7 +1080,7 @@ export default function App() {
                           })
                         }
                         placeholder="000-000-000-000"
-                        className={`${inputBaseClass} font-mono`}
+                        className="w-full min-h-[84px] px-3 py-2 font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                       />
                     </div>
                   </div>
@@ -1090,7 +1090,7 @@ export default function App() {
                       Principal Office Address
                     </label>
                     <textarea
-                      rows={2}
+                      rows={3}
                       value={doc.client.address}
                       onChange={(e) =>
                         setDoc({
@@ -1098,7 +1098,7 @@ export default function App() {
                           client: { ...doc.client, address: e.target.value },
                         })
                       }
-                      className={inputBaseClass}
+                      className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                     />
                   </div>
 
@@ -1107,8 +1107,8 @@ export default function App() {
                       <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         Attention To (Authorized Representative)
                       </label>
-                      <input
-                        type="text"
+                      <textarea
+                        rows={3}
                         value={doc.client.attentionTo}
                         onChange={(e) =>
                           setDoc({
@@ -1116,15 +1116,15 @@ export default function App() {
                             client: { ...doc.client, attentionTo: e.target.value },
                           })
                         }
-                        className={inputBaseClass}
+                        className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                       />
                     </div>
                     <div>
                       <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         Designation / Corporate Position
                       </label>
-                      <input
-                        type="text"
+                      <textarea
+                        rows={3}
                         value={doc.client.designation}
                         onChange={(e) =>
                           setDoc({
@@ -1133,7 +1133,7 @@ export default function App() {
                           })
                         }
                         placeholder="e.g., Corporate Secretary / President"
-                        className={inputBaseClass}
+                        className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                       />
                     </div>
                   </div>
@@ -1261,8 +1261,8 @@ export default function App() {
                         <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                           Milestone / Tranche Label
                         </label>
-                        <input
-                          type="text"
+                        <textarea
+                          rows={3}
                           value={doc.taxConfig.trancheDescription}
                           onChange={(e) =>
                             setDoc({
@@ -1273,7 +1273,7 @@ export default function App() {
                               },
                             })
                           }
-                          className={inputBaseClass}
+                          className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                         />
                       </div>
 
@@ -1365,46 +1365,6 @@ export default function App() {
 
                     <div>
                       <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                        Issuing Bank / Payment Channel
-                      </label>
-                      <input
-                        type="text"
-                        value={doc.receiptDetails.issuingBank}
-                        onChange={(e) =>
-                          setDoc({
-                            ...doc,
-                            receiptDetails: {
-                              ...doc.receiptDetails,
-                              issuingBank: e.target.value,
-                            },
-                          })
-                        }
-                        className={inputBaseClass}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                        Check No. / Reference No.
-                      </label>
-                      <input
-                        type="text"
-                        value={doc.receiptDetails.referenceNo}
-                        onChange={(e) =>
-                          setDoc({
-                            ...doc,
-                            receiptDetails: {
-                              ...doc.receiptDetails,
-                              referenceNo: e.target.value,
-                            },
-                          })
-                        }
-                        className={`${inputBaseClass} font-mono`}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         Date Payment Credited
                       </label>
                       <input
@@ -1420,6 +1380,66 @@ export default function App() {
                           })
                         }
                         className={`${inputBaseClass} font-mono`}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                        Issuing Bank / Payment Channel
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={doc.receiptDetails.issuingBank}
+                        onChange={(e) =>
+                          setDoc({
+                            ...doc,
+                            receiptDetails: {
+                              ...doc.receiptDetails,
+                              issuingBank: e.target.value,
+                            },
+                          })
+                        }
+                        className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                        Check No. / Reference No.
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={doc.receiptDetails.referenceNo}
+                        onChange={(e) =>
+                          setDoc({
+                            ...doc,
+                            receiptDetails: {
+                              ...doc.receiptDetails,
+                              referenceNo: e.target.value,
+                            },
+                          })
+                        }
+                        className="w-full min-h-[84px] px-3 py-2 font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+                      />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                        Payment Purpose Description
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={doc.receiptDetails.paymentPurpose}
+                        onChange={(e) =>
+                          setDoc({
+                            ...doc,
+                            receiptDetails: {
+                              ...doc.receiptDetails,
+                              paymentPurpose: e.target.value,
+                            },
+                          })
+                        }
+                        className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                       />
                     </div>
                   </div>
@@ -1526,11 +1546,11 @@ export default function App() {
 
             {/* TAB 4: REQUIREMENTS CHECKLIST & NOTES */}
             {activeTab === 'checklist' && (
-              <div className="space-y-5">
+              <div className="space-y-6">
                 <div>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="font-semibold text-slate-800 dark:text-slate-200">
-                      SEC Documentary Requirements Checklist
+                      SEC Documentary Requirements Checklist ({doc.requirementsChecklist.length})
                     </span>
                     <button
                       type="button"
@@ -1543,49 +1563,58 @@ export default function App() {
                           ],
                         })
                       }
-                      className="min-h-[36px] inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-md hover:bg-slate-800 dark:hover:bg-white transition-colors"
+                      className="min-h-[38px] sm:min-h-[32px] inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-md hover:bg-slate-800 dark:hover:bg-white transition-colors whitespace-nowrap shrink-0"
                     >
-                      <Plus className="w-3 h-3" /> Add Requirement
+                      <Plus className="w-3.5 h-3.5" /> Add Requirement
                     </button>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {doc.requirementsChecklist.map((req, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <span className="font-mono text-slate-400 w-5">{idx + 1}.</span>
-                        <input
-                          type="text"
+                      <div
+                        key={idx}
+                        className="p-3.5 sm:p-4 border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/70 rounded-xl space-y-2"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
+                            Requirement #{String(idx + 1).padStart(2, '0')}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setDoc({
+                                ...doc,
+                                requirementsChecklist: doc.requirementsChecklist.filter(
+                                  (_, i) => i !== idx
+                                ),
+                              })
+                            }
+                            className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors"
+                            title="Remove requirement"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <textarea
+                          rows={3}
                           value={req}
                           onChange={(e) => {
                             const updated = [...doc.requirementsChecklist];
                             updated[idx] = e.target.value;
                             setDoc({ ...doc, requirementsChecklist: updated });
                           }}
-                          className={`flex-1 ${inputBaseClass}`}
+                          placeholder="Enter documentary requirement..."
+                          className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                         />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setDoc({
-                              ...doc,
-                              requirementsChecklist: doc.requirementsChecklist.filter(
-                                (_, i) => i !== idx
-                              ),
-                            })
-                          }
-                          className="min-h-[38px] min-w-[38px] flex items-center justify-center text-slate-400 hover:text-rose-600"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
-                  <div className="flex items-center justify-between mb-2">
+                <div className="pt-5 border-t border-slate-200 dark:border-slate-800">
+                  <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="font-semibold text-slate-800 dark:text-slate-200">
-                      Engagement Terms, Tax Remarks & Footnotes
+                      Engagement Terms, Tax Remarks & Footnotes ({doc.notesAndTerms.length})
                     </span>
                     <button
                       type="button"
@@ -1598,38 +1627,47 @@ export default function App() {
                           ],
                         })
                       }
-                      className="min-h-[36px] inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-md hover:bg-slate-800 dark:hover:bg-white transition-colors"
+                      className="min-h-[38px] sm:min-h-[32px] inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-md hover:bg-slate-800 dark:hover:bg-white transition-colors whitespace-nowrap shrink-0"
                     >
-                      <Plus className="w-3 h-3" /> Add Note
+                      <Plus className="w-3.5 h-3.5" /> Add Note
                     </button>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {doc.notesAndTerms.map((note, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <span className="font-mono text-slate-400 w-5 pt-2">•</span>
+                      <div
+                        key={idx}
+                        className="p-3.5 sm:p-4 border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/70 rounded-xl space-y-2"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
+                            Note #{String(idx + 1).padStart(2, '0')}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setDoc({
+                                ...doc,
+                                notesAndTerms: doc.notesAndTerms.filter((_, i) => i !== idx),
+                              })
+                            }
+                            className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors"
+                            title="Remove note"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                         <textarea
-                          rows={2}
+                          rows={3}
                           value={note}
                           onChange={(e) => {
                             const updated = [...doc.notesAndTerms];
                             updated[idx] = e.target.value;
                             setDoc({ ...doc, notesAndTerms: updated });
                           }}
-                          className={`flex-1 ${inputBaseClass}`}
+                          placeholder="Enter engagement term or statutory note..."
+                          className="w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
                         />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setDoc({
-                              ...doc,
-                              notesAndTerms: doc.notesAndTerms.filter((_, i) => i !== idx),
-                            })
-                          }
-                          className="min-h-[38px] min-w-[38px] flex items-center justify-center text-slate-400 hover:text-rose-600 pt-1"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
                       </div>
                     ))}
                   </div>
