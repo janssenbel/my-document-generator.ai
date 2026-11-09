@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/my-document-generator.ai/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
