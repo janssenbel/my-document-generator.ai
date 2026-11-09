@@ -74,7 +74,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                     src={iconPreview}
                     alt="Home Screen App Icon"
                     referrerPolicy="no-referrer"
-                    className="w-14 h-14 rounded-2xl shadow-md border border-slate-300 dark:border-slate-700 shrink-0"
+                    className="w-14 h-14 rounded-2xl shadow-md shrink-0"
                   />
                 )}
                 <div className="min-w-0 flex-1">

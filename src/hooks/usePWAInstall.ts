@@ -14,58 +14,50 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
     const ctx = canvas.getContext('2d');
     if (!ctx) return '';
 
-    // Dark slate background (#0f172a -> #1e293b)
+    // Full-bleed dark slate background (#0f172a -> #1e293b) with zero border
     const grad = ctx.createLinearGradient(0, 0, 180, 180);
     grad.addColorStop(0, '#0f172a');
     grad.addColorStop(1, '#1e293b');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 180, 180);
 
-    // Subtle inner frame
-    ctx.strokeStyle = '#334155';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(12, 12, 156, 156);
-
     // Crisp White A4 Document sheet
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.roundRect(44, 30, 88, 114, 8);
+    ctx.roundRect(42, 28, 92, 118, 9);
     ctx.fill();
 
     // Document Header Bar
     ctx.fillStyle = '#0f172a';
-    ctx.fillRect(56, 44, 48, 7);
+    ctx.fillRect(54, 43, 50, 7);
 
     // Document Text Lines
     ctx.fillStyle = '#64748b';
-    ctx.fillRect(56, 60, 64, 4);
-    ctx.fillRect(56, 70, 64, 4);
-    ctx.fillRect(56, 80, 48, 4);
+    ctx.fillRect(54, 60, 68, 4);
+    ctx.fillRect(54, 70, 68, 4);
+    ctx.fillRect(54, 80, 50, 4);
 
     // Table Divider
     ctx.fillStyle = '#cbd5e1';
-    ctx.fillRect(56, 94, 64, 2);
+    ctx.fillRect(54, 95, 68, 2);
 
     // Total Row Bar
     ctx.fillStyle = '#0f172a';
-    ctx.fillRect(56, 102, 36, 5);
+    ctx.fillRect(54, 104, 38, 5);
 
-    // Gold SEC / Custom Monogram Badge at bottom right
+    // Clean Gold SEC / Custom Monogram Badge at bottom right (borderless)
     ctx.beginPath();
-    ctx.arc(122, 128, 24, 0, Math.PI * 2);
-    ctx.fillStyle = '#0f172a';
+    ctx.arc(124, 130, 24, 0, Math.PI * 2);
+    ctx.fillStyle = '#f59e0b';
     ctx.fill();
-    ctx.lineWidth = 3.5;
-    ctx.strokeStyle = '#f59e0b';
-    ctx.stroke();
 
     // Monogram Text
     const cleanMono = (monogram || 'SEC').trim().slice(0, 4).toUpperCase();
-    ctx.fillStyle = '#f8fafc';
+    ctx.fillStyle = '#0f172a';
     ctx.font = `bold ${cleanMono.length > 3 ? 11 : 13}px -apple-system, BlinkMacSystemFont, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(cleanMono, 122, 129);
+    ctx.fillText(cleanMono, 124, 131);
 
     return canvas.toDataURL('image/png');
   } catch {

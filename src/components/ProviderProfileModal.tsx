@@ -87,7 +87,7 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                     src={iconPreviewUrl}
                     alt="iPhone Home Screen Icon Preview"
                     referrerPolicy="no-referrer"
-                    className="w-14 h-14 rounded-2xl shadow-md border border-slate-300 dark:border-slate-700"
+                    className="w-14 h-14 rounded-2xl shadow-md"
                   />
                   <span className="text-[10px] font-medium text-slate-600 dark:text-slate-400 mt-1 max-w-[80px] truncate">
                     {form.appBrandName || 'LexCorp SEC'}

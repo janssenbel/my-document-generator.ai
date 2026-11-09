@@ -863,71 +863,83 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {doc.lineItems.map((item, idx) => (
                       <div
                         key={item.id}
-                        className="p-3 border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 rounded-lg space-y-2"
+                        className="p-4 sm:p-5 border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/70 rounded-xl space-y-3"
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-mono text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
                             Item #{String(idx + 1).padStart(2, '0')}
                           </span>
-                          <select
-                            value={item.category}
-                            onChange={(e) =>
-                              handleUpdateLineItem(item.id, {
-                                category: e.target.value as LineItemCategory,
-                              })
-                            }
-                            className="min-h-[36px] sm:min-h-[28px] px-2 py-0.5 text-[11px] bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded focus:outline-none"
-                          >
-                            <option value="professional_fee">
-                              Professional / SEC Assistance Fee
-                            </option>
-                            <option value="sec_statutory_fee">
-                              SEC Statutory Filing Fee / LRF
-                            </option>
-                            <option value="bir_tax_dst">
-                              BIR Documentary Stamp Tax (DST)
-                            </option>
-                            <option value="out_of_pocket">
-                              Out-of-Pocket / Notarial / Publication
-                            </option>
-                          </select>
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveLineItem(item.id)}
-                            className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors"
-                            title="Remove line item"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                          <div className="flex items-center gap-2 flex-1 sm:flex-initial justify-end">
+                            <select
+                              value={item.category}
+                              onChange={(e) =>
+                                handleUpdateLineItem(item.id, {
+                                  category: e.target.value as LineItemCategory,
+                                })
+                              }
+                              className="min-h-[40px] sm:min-h-[32px] px-2.5 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-md focus:outline-none"
+                            >
+                              <option value="professional_fee">
+                                Professional / SEC Assistance Fee
+                              </option>
+                              <option value="sec_statutory_fee">
+                                SEC Statutory Filing Fee / LRF
+                              </option>
+                              <option value="bir_tax_dst">
+                                BIR Documentary Stamp Tax (DST)
+                              </option>
+                              <option value="out_of_pocket">
+                                Out-of-Pocket / Notarial / Publication
+                              </option>
+                            </select>
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveLineItem(item.id)}
+                              className="min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors"
+                              title="Remove line item"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </div>
 
-                        <input
-                          type="text"
-                          value={item.description}
-                          onChange={(e) =>
-                            handleUpdateLineItem(item.id, { description: e.target.value })
-                          }
-                          placeholder="Line item title"
-                          className={`${inputBaseClass} font-medium`}
-                        />
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                            Particulars / Line Item Description
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={item.description}
+                            onChange={(e) =>
+                              handleUpdateLineItem(item.id, { description: e.target.value })
+                            }
+                            placeholder="Line item title and description"
+                            className="w-full min-h-[82px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-medium text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+                          />
+                        </div>
 
-                        <input
-                          type="text"
-                          value={item.subtext || ''}
-                          onChange={(e) =>
-                            handleUpdateLineItem(item.id, { subtext: e.target.value })
-                          }
-                          placeholder="Statutory basis or sub-details (optional)"
-                          className="w-full min-h-[38px] sm:min-h-[30px] px-2.5 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 rounded focus:outline-none"
-                        />
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                            Statutory Computation Basis / Sub-details (Optional)
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={item.subtext || ''}
+                            onChange={(e) =>
+                              handleUpdateLineItem(item.id, { subtext: e.target.value })
+                            }
+                            placeholder="Statutory basis or sub-details (optional)"
+                            className="w-full min-h-[82px] px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+                          />
+                        </div>
 
-                        <div className="grid grid-cols-3 gap-2 pt-1 items-end">
+                        <div className="grid grid-cols-3 gap-2.5 pt-1 items-end">
                           <div>
-                            <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">
+                            <label className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1">
                               Quantity
                             </label>
                             <input
@@ -939,11 +951,11 @@ export default function App() {
                                   quantity: Math.max(1, Number(e.target.value)),
                                 })
                               }
-                              className="w-full min-h-[38px] sm:min-h-[32px] px-2 py-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-slate-900 dark:text-slate-100 rounded tabular-nums"
+                              className="w-full min-h-[42px] sm:min-h-[36px] px-2.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-slate-900 dark:text-slate-100 rounded-md tabular-nums"
                             />
                           </div>
                           <div>
-                            <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">
+                            <label className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1">
                               Unit Price (PHP)
                             </label>
                             <input
@@ -956,14 +968,14 @@ export default function App() {
                                   unitPrice: Math.max(0, Number(e.target.value)),
                                 })
                               }
-                              className="w-full min-h-[38px] sm:min-h-[32px] px-2 py-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-slate-900 dark:text-slate-100 rounded tabular-nums"
+                              className="w-full min-h-[42px] sm:min-h-[36px] px-2.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-slate-900 dark:text-slate-100 rounded-md tabular-nums"
                             />
                           </div>
-                          <div className="text-right pb-1.5">
-                            <label className="block text-[10px] text-slate-500 dark:text-slate-400">
+                          <div className="text-right pb-2">
+                            <label className="block text-[11px] font-medium text-slate-500 dark:text-slate-400">
                               Subtotal
                             </label>
-                            <div className="font-mono font-semibold text-slate-900 dark:text-slate-100 tabular-nums">
+                            <div className="font-mono text-sm font-bold text-slate-900 dark:text-slate-100 tabular-nums mt-0.5">
                               {formatPHP(item.quantity * item.unitPrice)}
                             </div>
                           </div>
