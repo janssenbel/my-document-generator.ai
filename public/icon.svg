@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect x="36" y="36" width="440" height="440" rx="84" fill="none" stroke="#334155" stroke-width="4" />
+  <!-- Legal Document Pillar & SEC Seal -->
+  <rect x="136" y="104" width="240" height="304" rx="20" fill="#ffffff" />
+  <rect x="168" y="148" width="112" height="16" rx="8" fill="#0f172a" />
+  <rect x="168" y="184" width="176" height="10" rx="5" fill="#64748b" />
+  <rect x="168" y="208" width="176" height="10" rx="5" fill="#64748b" />
+  <rect x="168" y="232" width="140" height="10" rx="5" fill="#64748b" />
+  <rect x="168" y="268" width="176" height="2" fill="#e2e8f0" />
+  <rect x="168" y="286" width="90" height="12" rx="6" fill="#0f172a" />
+  <rect x="284" y="286" width="60" height="12" rx="6" fill="#0f172a" />
+  <!-- Gold SEC Badge Emblem -->
+  <circle cx="344" cy="368" r="54" fill="#0f172a" stroke="#f59e0b" stroke-width="8" />
+  <text x="344" y="378" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="30" fill="#f8fafc">SEC</text>
+</svg>

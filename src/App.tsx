@@ -4,7 +4,6 @@ import {
   Plus,
   Trash2,
   Calculator,
-  Building2,
   Copy,
   Check,
   ArrowRight,
@@ -17,6 +16,7 @@ import {
   Eye,
   Edit3,
   Download,
+  Settings,
 } from 'lucide-react';
 import {
   createDocumentFromPreset,
@@ -40,10 +40,12 @@ import {
   triggerPdfFileDownload,
   triggerSafariIframePrint,
 } from './utils/pdfExporter';
+import { syncAppIdentityToDOM } from './hooks/usePWAInstall';
 import { DocumentPreview } from './components/DocumentPreview';
 import { SECFeeCalculatorModal } from './components/SECFeeCalculatorModal';
 import { ProviderProfileModal } from './components/ProviderProfileModal';
 import { PdfExportModal } from './components/PdfExportModal';
+import { PWAInstallButton } from './components/PWAInstallButton';
 
 const STORAGE_KEY_DOCS = 'lexcorp_sec_saved_docs_v1';
 const STORAGE_KEY_PROVIDER = 'lexcorp_sec_provider_v1';
@@ -122,7 +124,9 @@ export default function App() {
   const [provider, setProvider] = useState<ProviderProfile>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY_PROVIDER);
-      return raw ? JSON.parse(raw) : DEFAULT_PROVIDER_PROFILE;
+      return raw
+        ? { ...DEFAULT_PROVIDER_PROFILE, ...JSON.parse(raw) }
+        : DEFAULT_PROVIDER_PROFILE;
     } catch {
       return DEFAULT_PROVIDER_PROFILE;
     }
@@ -151,7 +155,6 @@ export default function App() {
   });
 
   const [activeTab, setActiveTab] = useState<EditorTab>('items');
-  // Mobile viewport mode: 'edit' vs 'preview'
   const [mobilePane, setMobilePane] = useState<'edit' | 'preview'>('edit');
   const [isCalcOpen, setIsCalcOpen] = useState(false);
   const [isProviderOpen, setIsProviderOpen] = useState(false);
@@ -168,6 +171,11 @@ export default function App() {
     } catch {
       // ignore
     }
+    // Sync Studio Brand Name & Dynamic iPhone Apple Touch Icon to DOM
+    syncAppIdentityToDOM(
+      provider.appBrandName || 'LexCorp SEC Studio',
+      provider.appIconMonogram || 'SEC'
+    );
   }, [provider]);
 
   useEffect(() => {
@@ -223,7 +231,7 @@ export default function App() {
     }));
   };
 
-  // Apply SEC Transaction Preset
+  // Apply SEC Transaction Preset from Dropdown List
   const handleSelectSECPreset = (category: SECTransactionCategory) => {
     const preset = SEC_TRANSACTION_PRESETS[category];
     const newLineItems: LineItem[] = preset.defaultLineItems.map((item, idx) => ({
@@ -251,7 +259,7 @@ export default function App() {
       },
       updatedAt: new Date().toISOString(),
     }));
-    showNotice(`Loaded ${preset.shortLabel} preset`);
+    showNotice(`Loaded ${preset.shortLabel} template`);
   };
 
   // Convert current document to the next stage in workflow & save current snapshot
@@ -467,17 +475,17 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-20 lg:pb-8">
       {/* Top Bar Contract: Strictly 3 zones separated by gap-8 */}
       <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-8 px-4 sm:px-6 py-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 pt-safe">
-        {/* Zone 1: Single text element wordmark */}
+        {/* Zone 1: Single text element wordmark (Editable in Studio Settings) */}
         <a
-          href="#workspace"
+          href="#studio-settings"
           onClick={(e) => {
             e.preventDefault();
-            setActiveTab('items');
-            setMobilePane('edit');
+            setIsProviderOpen(true);
           }}
-          className="font-display text-base font-bold tracking-tight text-slate-950 dark:text-white whitespace-nowrap shrink-0"
+          title="Click to edit Studio Brand Name & Settings"
+          className="font-display text-base font-bold tracking-tight text-slate-950 dark:text-white hover:opacity-80 transition-opacity whitespace-nowrap shrink-0"
         >
-          LexCorp SEC Studio
+          {provider.appBrandName || 'LexCorp SEC Studio'}
         </a>
 
         {/* Zone 2: 4 concise single-line navigation links */}
@@ -508,7 +516,7 @@ export default function App() {
             onClick={() => setIsProviderOpen(true)}
             className="hover:text-slate-950 dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
           >
-            Firm Letterhead
+            Studio Settings
           </button>
           <button
             type="button"
@@ -539,7 +547,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* Workspace Control Bar (Document Type Switcher, Dark Mode Toggle, & Workflow Actions) */}
+      {/* Workspace Control Bar (Document Type Switcher, Studio Settings, iPhone Home Screen Icon, Dark Mode, & Workflow Actions) */}
       <div className="no-print bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 py-3">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           {/* Document Type Segmented Switcher */}
@@ -566,13 +574,30 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right Toolbar: Dark Mode, Print, Copy, Save, & Next Stage */}
+          {/* Right Toolbar: Studio Settings, Add to iPhone Home Screen, Dark Mode, Print, Copy, Save, & Next Stage */}
           <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2">
             {savedToast && (
               <span className="text-xs font-medium text-emerald-700 dark:text-emerald-400 mr-1">
                 {savedToast}
               </span>
             )}
+
+            {/* Studio & Firm Settings Button */}
+            <button
+              type="button"
+              onClick={() => setIsProviderOpen(true)}
+              className="min-h-[40px] sm:min-h-[34px] inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-md transition-colors whitespace-nowrap shrink-0"
+            >
+              <Settings className="w-3.5 h-3.5" />
+              <span>Studio Settings</span>
+            </button>
+
+            {/* In-App PWA / iPhone Home Screen Icon Button */}
+            <PWAInstallButton
+              appBrandName={provider.appBrandName || 'LexCorp SEC Studio'}
+              appIconMonogram={provider.appIconMonogram || 'SEC'}
+              onOpenSettings={() => setIsProviderOpen(true)}
+            />
 
             {/* Dark Mode Toggle */}
             <button
@@ -584,12 +609,12 @@ export default function App() {
               {isDark ? (
                 <>
                   <Sun className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Light Mode</span>
+                  <span>Light</span>
                 </>
               ) : (
                 <>
                   <Moon className="w-3.5 h-3.5 text-slate-700" />
-                  <span>Dark Mode</span>
+                  <span>Dark</span>
                 </>
               )}
             </button>
@@ -683,42 +708,44 @@ export default function App() {
             mobilePane === 'preview' ? 'hidden lg:flex' : 'flex'
           }`}
         >
-          {/* SEC Transaction Preset Bar */}
-          <div className="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60">
-            <div className="flex items-center justify-between mb-2.5">
-              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          {/* SEC Transaction Template Dropdown Selector */}
+          <div className="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60 space-y-2">
+            <div className="flex items-center justify-between gap-2">
+              <label
+                htmlFor="sec-transaction-template-select"
+                className="text-xs font-semibold text-slate-700 dark:text-slate-300"
+              >
                 SEC Philippines Transaction Template
-              </span>
+              </label>
               <button
                 type="button"
                 onClick={() => setIsCalcOpen(true)}
-                className="min-h-[36px] inline-flex items-center gap-1 text-xs font-semibold text-slate-900 dark:text-slate-200 hover:underline whitespace-nowrap shrink-0"
+                className="min-h-[34px] inline-flex items-center gap-1 text-xs font-semibold text-slate-900 dark:text-slate-200 hover:underline whitespace-nowrap shrink-0"
               >
                 <Calculator className="w-3.5 h-3.5" />
                 Capital Stock Calculator
               </button>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-1.5">
-              {(Object.keys(SEC_TRANSACTION_PRESETS) as SECTransactionCategory[]).map((catKey) => {
-                const preset = SEC_TRANSACTION_PRESETS[catKey];
-                const isSelected = doc.secCategory === catKey;
-                return (
-                  <button
-                    key={catKey}
-                    type="button"
-                    onClick={() => handleSelectSECPreset(catKey)}
-                    className={`min-h-[40px] sm:min-h-[34px] px-2.5 py-1.5 text-left text-[11px] font-medium border rounded-md transition-colors truncate ${
-                      isSelected
-                        ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 border-slate-900 dark:border-slate-100 font-semibold'
-                        : 'bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600'
-                    }`}
-                    title={preset.transactionTitle}
-                  >
-                    {preset.shortLabel}
-                  </button>
-                );
-              })}
-            </div>
+
+            <select
+              id="sec-transaction-template-select"
+              value={doc.secCategory}
+              onChange={(e) =>
+                handleSelectSECPreset(e.target.value as SECTransactionCategory)
+              }
+              className="w-full min-h-[44px] sm:min-h-[38px] px-3 py-2 text-xs font-semibold bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg focus:outline-none focus:border-slate-900 dark:focus:border-slate-300"
+            >
+              {(Object.keys(SEC_TRANSACTION_PRESETS) as SECTransactionCategory[]).map(
+                (catKey) => {
+                  const preset = SEC_TRANSACTION_PRESETS[catKey];
+                  return (
+                    <option key={catKey} value={catKey}>
+                      {preset.shortLabel} — {preset.transactionTitle}
+                    </option>
+                  );
+                }
+              )}
+            </select>
           </div>
 
           {/* Editor Navigation Tabs */}
@@ -1103,10 +1130,10 @@ export default function App() {
                 <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
                   <div className="min-w-0">
                     <div className="font-semibold text-slate-800 dark:text-slate-200">
-                      Your Firm Letterhead & Bank Profile
+                      Studio Name, iPhone Icon & Firm Letterhead
                     </div>
                     <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
-                      {provider.firmName}
+                      {provider.appBrandName} · {provider.firmName}
                     </div>
                   </div>
                   <button
@@ -1114,8 +1141,8 @@ export default function App() {
                     onClick={() => setIsProviderOpen(true)}
                     className="min-h-[40px] inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-md transition-colors whitespace-nowrap shrink-0"
                   >
-                    <Building2 className="w-3.5 h-3.5" />
-                    Edit Firm Profile
+                    <Settings className="w-3.5 h-3.5" />
+                    Studio Settings
                   </button>
                 </div>
               </div>
@@ -1753,11 +1780,11 @@ export default function App() {
 
         <button
           type="button"
-          onClick={() => setIsCalcOpen(true)}
+          onClick={() => setIsProviderOpen(true)}
           className="min-h-[54px] flex flex-col items-center justify-center py-1.5 text-slate-500 dark:text-slate-400"
         >
-          <Calculator className="w-5 h-5" />
-          <span className="text-[10px] mt-1 tracking-tight">SEC Calc</span>
+          <Settings className="w-5 h-5" />
+          <span className="text-[10px] mt-1 tracking-tight">Settings</span>
         </button>
 
         <button
@@ -1800,7 +1827,7 @@ export default function App() {
         provider={provider}
         onSave={(updated) => {
           setProvider(updated);
-          showNotice('Updated Firm Letterhead & Bank Profile');
+          showNotice('Saved Studio Settings & Firm Profile');
         }}
       />
 

@@ -13,6 +13,8 @@ export interface SECPresetTemplate {
 }
 
 export const DEFAULT_PROVIDER_PROFILE: ProviderProfile = {
+  appBrandName: 'LexCorp SEC Studio',
+  appIconMonogram: 'SEC',
   firmName: 'VANGUARD CORPORATE & SEC ADVISORY SERVICES',
   practiceTitle: 'Corporate Secretarial, SEC Compliance & Regulatory Assistance',
   tin: '418-902-315-000 (Non-VAT)',

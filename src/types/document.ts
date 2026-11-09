@@ -26,6 +26,8 @@ export interface LineItem {
 }
 
 export interface ProviderProfile {
+  appBrandName: string;
+  appIconMonogram: string;
   firmName: string;
   practiceTitle: string;
   tin: string;
