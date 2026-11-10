@@ -26,12 +26,12 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
     typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/70 backdrop-blur-xs p-0 sm:p-4 no-print">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-xl shadow-xl w-full max-w-lg overflow-hidden pb-safe">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 no-print">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200/80 dark:border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden pb-safe">
         {/* Mobile drag handle */}
         <div className="sm:hidden w-10 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1" />
 
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-900/60">
           <div className="flex items-center gap-2.5">
             <FileCheck2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
             <div>
@@ -64,7 +64,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             <button
               type="button"
               onClick={() => triggerPdfFileDownload(artifact)}
-              className="w-full min-h-[48px] px-4 py-3 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 font-semibold rounded-lg flex items-center justify-between hover:bg-slate-800 dark:hover:bg-white transition-colors"
+              className="w-full min-h-[48px] px-4 py-3 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 font-semibold rounded-xl flex items-center justify-between hover:bg-slate-800 dark:hover:bg-white transition-colors"
             >
               <span className="flex items-center gap-2.5">
                 <Download className="w-4 h-4 shrink-0" />
@@ -78,7 +78,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
               <button
                 type="button"
                 onClick={() => sharePdfFileNative(artifact)}
-                className="w-full min-h-[48px] px-4 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold rounded-lg border border-slate-300 dark:border-slate-700 flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                className="w-full min-h-[48px] px-4 py-3 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-slate-100 font-semibold rounded-xl border border-slate-200/90 dark:border-white/10 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 <span className="flex items-center gap-2.5">
                   <Share2 className="w-4 h-4 shrink-0" />
@@ -92,7 +92,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             <button
               type="button"
               onClick={() => triggerSafariIframePrint('a4-printable-sheet')}
-              className="w-full min-h-[48px] px-4 py-3 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold rounded-lg border border-slate-300 dark:border-slate-700 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="w-full min-h-[48px] px-4 py-3 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-semibold rounded-xl border border-slate-200/90 dark:border-white/10 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
             >
               <span className="flex items-center gap-2.5">
                 <Printer className="w-4 h-4 shrink-0" />
@@ -103,7 +103,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
           </div>
         </div>
 
-        <div className="px-5 py-3 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+        <div className="px-5 py-3 bg-slate-50/70 dark:bg-slate-900/60 border-t border-slate-200/70 dark:border-white/[0.08] flex justify-end">
           <button
             type="button"
             onClick={onClose}

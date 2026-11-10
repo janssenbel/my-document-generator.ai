@@ -112,17 +112,19 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
   return (
     <div ref={containerRef} className="w-full">
       {/* A4 Paper Format Bar (Hidden on Print) */}
-      <div className="no-print flex items-center justify-between px-3 py-2 mb-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400">
-        <div className="flex items-center gap-2">
-          <span className="font-mono font-semibold text-slate-900 dark:text-slate-100">
-            ISO A4 Portrait
+      <div className="no-print flex items-center justify-between gap-2 px-3.5 py-2.5 mb-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xs border border-slate-200/80 dark:border-white/[0.08] rounded-xl shadow-2xs text-xs text-slate-600 dark:text-slate-400">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
+          <span className="font-mono font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap">
+            A4 Portrait
           </span>
           <span aria-hidden="true">·</span>
-          <span className="font-mono tabular-nums">210mm × 297mm</span>
+          <span className="font-mono text-[11px] tabular-nums whitespace-nowrap">
+            210×297mm
+          </span>
           {scale < 1 && (
             <>
               <span aria-hidden="true">·</span>
-              <span className="font-mono tabular-nums">
+              <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400 tabular-nums whitespace-nowrap">
                 {Math.round(scale * 100)}% Fit
               </span>
             </>
@@ -132,15 +134,15 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
         <button
           type="button"
           onClick={() => setFitToScreen((prev) => !prev)}
-          className="sm:hidden inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded"
+          className="sm:hidden inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-slate-800 dark:text-slate-100 bg-slate-100/90 dark:bg-slate-800 border border-slate-200/80 dark:border-white/10 rounded-lg active:scale-[0.98] transition-all whitespace-nowrap shrink-0"
         >
           {fitToScreen ? (
             <>
-              <ZoomIn className="w-3.5 h-3.5" /> 100% Zoom
+              <ZoomIn className="w-3.5 h-3.5" /> Actual Size
             </>
           ) : (
             <>
-              <ZoomOut className="w-3.5 h-3.5" /> Fit A4 to iPhone
+              <ZoomOut className="w-3.5 h-3.5" /> Fit Portrait
             </>
           )}
         </button>
@@ -148,9 +150,9 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
 
       {/* Responsive Scale Viewport for True A4 Sheet */}
       <div
-        className={`w-full ${!fitToScreen ? 'overflow-x-auto' : 'overflow-hidden'} flex justify-center`}
+        className={`w-full ${!fitToScreen ? 'overflow-x-auto pb-3' : 'overflow-hidden'} flex justify-center`}
         style={{
-          height: scale < 1 ? `${Math.ceil(sheetHeight * scale) + 12}px` : 'auto',
+          height: scale < 1 ? `${Math.ceil(sheetHeight * scale) + 16}px` : 'auto',
         }}
       >
         <div
@@ -165,7 +167,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
           <div
             id="a4-printable-sheet"
             ref={sheetRef}
-            className="a4-paper-sheet print-only-container bg-white text-slate-900 border border-slate-200 dark:border-slate-700 shadow-md text-[12.5px] leading-relaxed"
+            className="a4-paper-sheet print-only-container bg-white text-slate-900 ring-1 ring-slate-900/[0.08] dark:ring-white/15 shadow-xl rounded-[2px] text-[12.5px] leading-relaxed"
           >
             {/* Top Letterhead */}
             <div className="flex flex-row items-start justify-between gap-6 pb-5 border-b-2 border-slate-900">

@@ -46,13 +46,16 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
 
   const result = computeSECCapitalFees(mode, acs, subscribed, paidUp);
 
+  const inputClass =
+    'w-full min-h-[44px] px-3.5 py-2 text-xs font-mono bg-white dark:bg-slate-950/80 border border-slate-200/90 dark:border-white/10 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 focus:ring-2 focus:ring-slate-900/5 dark:focus:ring-white/10 tabular-nums rounded-xl transition-all';
+
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/70 backdrop-blur-xs p-0 sm:p-4 no-print">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden pb-safe">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 no-print">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200/80 dark:border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden pb-safe">
         {/* Mobile grab handle */}
         <div className="sm:hidden w-10 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1 shrink-0" />
 
-        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 shrink-0">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-900/60 shrink-0">
           <div className="flex items-center gap-2.5">
             <Calculator className="w-4 h-4 text-slate-800 dark:text-slate-200 shrink-0" />
             <h2 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100">
@@ -71,11 +74,11 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
 
         <div className="p-5 sm:p-6 overflow-y-auto space-y-5">
           {/* Segmented Mode Control */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 p-1 bg-slate-100/90 dark:bg-slate-800/80 border border-slate-200/60 dark:border-white/[0.06] rounded-xl">
             <button
               type="button"
               onClick={() => handleModeSwitch('registration')}
-              className={`min-h-[40px] px-3.5 py-2 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
+              className={`min-h-[40px] px-3.5 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap ${
                 mode === 'registration'
                   ? 'bg-white dark:bg-slate-950 text-slate-950 dark:text-white shadow-xs'
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
@@ -86,7 +89,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
             <button
               type="button"
               onClick={() => handleModeSwitch('increase_acs')}
-              className={`min-h-[40px] px-3.5 py-2 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
+              className={`min-h-[40px] px-3.5 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap ${
                 mode === 'increase_acs'
                   ? 'bg-white dark:bg-slate-950 text-slate-950 dark:text-white shadow-xs'
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
@@ -108,7 +111,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
                 step={50000}
                 value={acs}
                 onChange={(e) => handleAcsChange(Number(e.target.value))}
-                className="w-full min-h-[42px] px-3 py-2 text-xs font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 tabular-nums rounded-md"
+                className={inputClass}
               />
               <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                 Basis for 0.20% (1/5 of 1%) SEC fee
@@ -125,7 +128,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
                 step={25000}
                 value={subscribed}
                 onChange={(e) => setSubscribed(Math.max(0, Number(e.target.value)))}
-                className="w-full min-h-[42px] px-3 py-2 text-xs font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 tabular-nums rounded-md"
+                className={inputClass}
               />
               <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                 Basis for 1.0% BIR Documentary Stamp Tax
@@ -142,7 +145,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
                 step={10000}
                 value={paidUp}
                 onChange={(e) => setPaidUp(Math.max(0, Number(e.target.value)))}
-                className="w-full min-h-[42px] px-3 py-2 text-xs font-mono bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 tabular-nums rounded-md"
+                className={inputClass}
               />
               <span className="block text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                 25% of Subscribed: {formatPHP(subscribed * 0.25)}
@@ -158,7 +161,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
                 key={presetCap}
                 type="button"
                 onClick={() => handleAcsChange(presetCap)}
-                className="min-h-[36px] px-3 py-1.5 text-xs font-mono border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors tabular-nums rounded-md whitespace-nowrap shrink-0"
+                className="min-h-[36px] px-3 py-1.5 text-xs font-mono border border-slate-200/90 dark:border-white/10 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors tabular-nums rounded-lg whitespace-nowrap shrink-0"
               >
                 ₱{(presetCap / 1000000).toFixed(0)}M
               </button>
@@ -166,8 +169,8 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
           </div>
 
           {/* Statutory Assessment Breakdown */}
-          <div className="border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-4 rounded-lg space-y-2 text-xs">
-            <div className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
+          <div className="border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-950/60 p-4 rounded-xl space-y-2.5 text-xs">
+            <div className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider pb-1.5 border-b border-slate-200/70 dark:border-white/[0.08]">
               Computed Statutory Assessment Schedule
             </div>
 
@@ -207,7 +210,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
               </span>
             </div>
 
-            <div className="flex justify-between gap-2 pt-2 border-t border-slate-300 dark:border-slate-700 font-bold text-slate-950 dark:text-white text-sm">
+            <div className="flex justify-between gap-2 pt-2.5 border-t border-slate-200/80 dark:border-white/10 font-bold text-slate-950 dark:text-white text-sm">
               <span>Total Statutory SEC & BIR Fees:</span>
               <span className="font-mono tabular-nums shrink-0">
                 {formatPHP(result.totalStatutoryEstimate)}
@@ -216,7 +219,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 shrink-0">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 bg-slate-50/70 dark:bg-slate-900/60 border-t border-slate-200/70 dark:border-white/[0.08] shrink-0">
           <button
             type="button"
             onClick={onClose}
@@ -230,7 +233,7 @@ export const SECFeeCalculatorModal: React.FC<SECFeeCalculatorModalProps> = ({
               onApplyToDocument(result, mode);
               onClose();
             }}
-            className="min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white dark:text-slate-950 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white rounded-lg transition-colors whitespace-nowrap shrink-0"
+            className="min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white dark:text-slate-950 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white rounded-xl transition-colors whitespace-nowrap shrink-0"
           >
             <Check className="w-4 h-4" />
             Apply Statutory Fees to Document

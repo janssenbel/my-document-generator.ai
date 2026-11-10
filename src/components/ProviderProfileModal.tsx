@@ -44,14 +44,14 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
   };
 
   const textareaClass =
-    'w-full min-h-[84px] px-3 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300';
+    'w-full min-h-[84px] px-3.5 py-2.5 bg-white dark:bg-slate-950/80 border border-slate-200/90 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 focus:ring-2 focus:ring-slate-900/5 dark:focus:ring-white/10 transition-all';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/70 backdrop-blur-xs p-0 sm:p-4 no-print">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden pb-safe">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 no-print">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200/80 dark:border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden pb-safe">
         <div className="sm:hidden w-10 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1 shrink-0" />
 
-        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 shrink-0">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-900/60 shrink-0">
           <div className="flex items-center gap-2.5">
             <Settings className="w-4 h-4 text-slate-800 dark:text-slate-200 shrink-0" />
             <h2 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100">
@@ -70,13 +70,13 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
 
         <div className="p-5 sm:p-6 overflow-y-auto space-y-5 text-xs">
           {/* Section 1: App Studio Brand Name & iPhone Home Screen Icon */}
-          <div className="p-4 bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-xl space-y-4">
+          <div className="p-4 bg-slate-50/70 dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/[0.08] rounded-xl space-y-4">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <div className="font-display text-xs font-bold text-slate-900 dark:text-white">
                   1. Studio Brand Name & iPhone Home Screen Icon
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed">
                   Customize the top bar Studio title (e.g. &ldquo;LexCorp SEC Studio&rdquo;) and the
                   icon displayed when added to your iPhone Home Screen in Safari.
                 </p>
@@ -125,7 +125,7 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
               </div>
             </div>
 
-            <div className="flex items-start gap-2.5 pt-2 border-t border-slate-200/80 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-400">
+            <div className="flex items-start gap-2.5 pt-2.5 border-t border-slate-200/70 dark:border-white/[0.08] text-[11px] text-slate-600 dark:text-slate-400">
               <Smartphone className="w-4 h-4 text-slate-700 dark:text-slate-300 shrink-0 mt-0.5" />
               <div>
                 <strong className="text-slate-800 dark:text-slate-200">
