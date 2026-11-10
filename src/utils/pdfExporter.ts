@@ -104,10 +104,10 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
   const totals = calculateDocumentTotals(doc);
   const headerMeta = DOC_TYPE_HEADERS[doc.docType];
 
-  // 1. TOP LETTERHEAD
+  // 1. TOP LETTERHEAD (SEC Philippines Royal Navy #0B2545 & Seal Gold #C59B27)
   pdf.setFont('helvetica', 'bold');
   pdf.setFontSize(11.5);
-  pdf.setTextColor(15, 23, 42);
+  pdf.setTextColor(11, 37, 69);
   const firmLines = pdf.splitTextToSize(
     cleanPdfText(provider.firmName || 'SEC CORPORATE ASSISTANCE PRACTICE').toUpperCase(),
     105
@@ -120,15 +120,17 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
   pdf.text(cleanPdfText(headerMeta.title), pageW - marginX, y, { align: 'right' });
 
   const leftAfterTitleY = y + firmLines.length * 4.5;
-  pdf.setFont('helvetica', 'normal');
+  pdf.setFont('helvetica', 'bold');
   pdf.setFontSize(8.5);
-  pdf.setTextColor(71, 85, 105);
+  pdf.setTextColor(154, 116, 24);
   pdf.text(cleanPdfText(provider.practiceTitle), marginX, leftAfterTitleY);
 
   pdf.setFontSize(8);
   pdf.text(cleanPdfText(headerMeta.subtitle), pageW - marginX, y + 4.5, { align: 'right' });
 
   // Address & Contact on left
+  pdf.setFont('helvetica', 'normal');
+  pdf.setTextColor(71, 85, 105);
   const addrLines = pdf.splitTextToSize(cleanPdfText(provider.address), 102);
   pdf.text(addrLines, marginX, leftAfterTitleY + 4.2);
   const contactY = leftAfterTitleY + 4.2 + addrLines.length * 3.6;
@@ -142,7 +144,7 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
   // Ref No & Dates on right
   let rightMetaY = y + 10;
   pdf.setFont('helvetica', 'bold');
-  pdf.setTextColor(15, 23, 42);
+  pdf.setTextColor(11, 37, 69);
   pdf.text(`${headerMeta.refLabel}: ${cleanPdfText(doc.referenceNo)}`, pageW - marginX, rightMetaY, {
     align: 'right',
   });
@@ -164,11 +166,14 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
 
   y = Math.max(contactY + 7, rightMetaY + 5);
 
-  // Thick Header Divider
-  pdf.setDrawColor(15, 23, 42);
+  // SEC Navy & Seal Gold Double Rule Divider
+  pdf.setDrawColor(11, 37, 69);
   pdf.setLineWidth(0.5);
   pdf.line(marginX, y, pageW - marginX, y);
-  y += 5;
+  pdf.setDrawColor(197, 155, 39);
+  pdf.setLineWidth(0.75);
+  pdf.line(marginX, y + 1.1, pageW - marginX, y + 1.1);
+  y += 6;
 
   // 2. CLIENT & TRANSACTION METADATA BLOCK (2 Columns)
   const clientLabel =
@@ -314,14 +319,15 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
 
   // 5. ITEMIZED FEE SCHEDULE TABLE
   // Columns: # (8mm), Description (88mm), Category (32mm), Qty (10mm), Unit (22mm), Total (22mm) = 182mm
-  pdf.setFillColor(241, 245, 249);
-  pdf.setDrawColor(15, 23, 42);
-  pdf.setLineWidth(0.35);
-  pdf.rect(marginX, y, contentW, 6.5, 'FD');
+  pdf.setFillColor(11, 37, 69);
+  pdf.rect(marginX, y, contentW, 6.5, 'F');
+  pdf.setDrawColor(197, 155, 39);
+  pdf.setLineWidth(0.5);
+  pdf.line(marginX, y + 6.5, pageW - marginX, y + 6.5);
 
   pdf.setFont('helvetica', 'bold');
   pdf.setFontSize(7.5);
-  pdf.setTextColor(15, 23, 42);
+  pdf.setTextColor(255, 255, 255);
   pdf.text('#', marginX + 2, y + 4.3);
   pdf.text('PARTICULARS & DESCRIPTION OF SEC TRANSACTION', marginX + 9, y + 4.3);
   pdf.text('CLASSIFICATION', marginX + 99, y + 4.3);
@@ -336,12 +342,13 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
   const renderSectionGroup = (headerTitle: string, items: typeof doc.lineItems, startIndex: number) => {
     if (items.length === 0) return;
     checkPageBreak(10);
-    pdf.setFillColor(248, 250, 252);
-    pdf.setDrawColor(226, 232, 240);
+    pdf.setFillColor(240, 244, 249);
+    pdf.setDrawColor(203, 213, 225);
+    pdf.setLineWidth(0.2);
     pdf.rect(marginX, y, contentW, 5.5, 'FD');
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(7.5);
-    pdf.setTextColor(30, 41, 59);
+    pdf.setTextColor(11, 37, 69);
     pdf.text(cleanPdfText(headerTitle), marginX + 2, y + 3.8);
     y += 5.5;
 

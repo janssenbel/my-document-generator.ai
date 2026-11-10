@@ -14,10 +14,10 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
     const ctx = canvas.getContext('2d');
     if (!ctx) return '';
 
-    // Full-bleed dark slate background (#0f172a -> #1e293b) with zero border
+    // Full-bleed SEC Philippines Royal Navy background (#0B2545 -> #133E7C) with zero border
     const grad = ctx.createLinearGradient(0, 0, 180, 180);
-    grad.addColorStop(0, '#0f172a');
-    grad.addColorStop(1, '#1e293b');
+    grad.addColorStop(0, '#0B2545');
+    grad.addColorStop(1, '#133E7C');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 180, 180);
 
@@ -27,9 +27,11 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
     ctx.roundRect(42, 28, 92, 118, 9);
     ctx.fill();
 
-    // Document Header Bar
-    ctx.fillStyle = '#0f172a';
-    ctx.fillRect(54, 43, 50, 7);
+    // SEC Navy & Gold Document Header Bar
+    ctx.fillStyle = '#0B2545';
+    ctx.fillRect(54, 42, 54, 6);
+    ctx.fillStyle = '#C59B27';
+    ctx.fillRect(54, 50, 68, 2.5);
 
     // Document Text Lines
     ctx.fillStyle = '#64748b';
@@ -42,18 +44,18 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
     ctx.fillRect(54, 95, 68, 2);
 
     // Total Row Bar
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#0B2545';
     ctx.fillRect(54, 104, 38, 5);
 
-    // Clean Gold SEC / Custom Monogram Badge at bottom right (borderless)
+    // Official SEC Seal Gold Badge at bottom right (borderless)
     ctx.beginPath();
     ctx.arc(124, 130, 24, 0, Math.PI * 2);
-    ctx.fillStyle = '#f59e0b';
+    ctx.fillStyle = '#C59B27';
     ctx.fill();
 
     // Monogram Text
     const cleanMono = (monogram || 'SEC').trim().slice(0, 4).toUpperCase();
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#0B2545';
     ctx.font = `bold ${cleanMono.length > 3 ? 11 : 13}px -apple-system, BlinkMacSystemFont, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';

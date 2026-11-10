@@ -112,9 +112,10 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
   return (
     <div ref={containerRef} className="w-full">
       {/* A4 Paper Format Bar (Hidden on Print) */}
-      <div className="no-print flex items-center justify-between gap-2 px-3.5 py-2.5 mb-3 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/[0.08] rounded-xl shadow-2xs text-xs text-slate-600 dark:text-slate-400">
+      <div className="no-print flex items-center justify-between gap-2 px-3.5 py-2.5 mb-3 bg-white dark:bg-[#0B192C] border border-[#0B2545]/15 dark:border-[#C59B27]/25 rounded-xl shadow-2xs text-xs text-slate-600 dark:text-slate-300">
         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
-          <span className="font-mono font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap">
+          <span className="inline-block w-2 h-2 rounded-full bg-[#C59B27] shrink-0" />
+          <span className="font-mono font-semibold text-[#0B2545] dark:text-[#E5B842] whitespace-nowrap">
             A4 Portrait
           </span>
           <span aria-hidden="true">·</span>
@@ -134,7 +135,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
         <button
           type="button"
           onClick={() => setFitToScreen((prev) => !prev)}
-          className="sm:hidden inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-slate-800 dark:text-slate-100 bg-slate-100/90 dark:bg-slate-800 border border-slate-200/80 dark:border-white/10 rounded-lg active:scale-[0.98] transition-all whitespace-nowrap shrink-0"
+          className="sm:hidden inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-[#0B2545] dark:text-[#E5B842] bg-[#0B2545]/[0.06] dark:bg-[#133E7C]/40 border border-[#0B2545]/20 dark:border-[#C59B27]/30 rounded-lg active:scale-[0.98] transition-all whitespace-nowrap shrink-0"
         >
           {fitToScreen ? (
             <>
@@ -169,16 +170,16 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
             ref={sheetRef}
             className="a4-paper-sheet print-only-container bg-white text-slate-900 ring-1 ring-slate-900/[0.08] dark:ring-white/15 shadow-xl rounded-[2px] text-[12.5px] leading-relaxed"
           >
-            {/* Top Letterhead */}
-            <div className="flex flex-row items-start justify-between gap-6 pb-5 border-b-2 border-slate-900">
+            {/* Top Letterhead with SEC Philippines Navy & Gold Double Rule */}
+            <div className="flex flex-row items-start justify-between gap-6 pb-4 border-b-2 border-[#0B2545] relative">
               <div className="max-w-[420px]">
-                <h1 className="font-display text-lg font-bold tracking-tight text-slate-950 uppercase">
+                <h1 className="font-display text-lg font-bold tracking-tight text-[#0B2545] uppercase">
                   {provider.firmName || 'SEC CORPORATE ASSISTANCE PRACTICE'}
                 </h1>
-                <p className="text-xs font-medium text-slate-600 mt-0.5">
+                <p className="text-xs font-semibold text-[#9A7418] mt-0.5">
                   {provider.practiceTitle}
                 </p>
-                <p className="text-xs text-slate-500 mt-1.5 leading-normal">
+                <p className="text-xs text-slate-600 mt-1.5 leading-normal">
                   {provider.address}
                 </p>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-slate-600 mt-1.5 font-mono">
@@ -191,15 +192,17 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
               </div>
 
               <div className="text-right shrink-0">
-                <div className="font-display text-base font-bold tracking-tight text-slate-950 uppercase">
+                <div className="font-display text-base font-bold tracking-tight text-[#0B2545] uppercase">
                   {headerMeta.title}
                 </div>
-                <div className="text-[11px] text-slate-500 mt-0.5">{headerMeta.subtitle}</div>
+                <div className="text-[11px] font-medium text-[#9A7418] mt-0.5">
+                  {headerMeta.subtitle}
+                </div>
 
                 <dl className="mt-2.5 space-y-0.5 text-xs">
                   <div className="flex justify-end gap-2">
                     <dt className="text-slate-500">{headerMeta.refLabel}:</dt>
-                    <dd className="font-mono font-semibold text-slate-900 tabular-nums">
+                    <dd className="font-mono font-semibold text-[#0B2545] tabular-nums">
                       {doc.referenceNo}
                     </dd>
                   </div>
@@ -218,6 +221,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                 </dl>
               </div>
             </div>
+            <div className="h-[3px] bg-[#C59B27] w-full mt-[2px]" />
 
             {/* Client & Transaction Metadata Grid */}
             <div className="grid grid-cols-12 gap-5 py-4 border-b border-slate-200">
@@ -346,7 +350,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
             <div className="mt-4">
               <table className="w-full border-collapse text-left">
                 <thead>
-                  <tr className="border-y border-slate-900 bg-slate-50 text-[10.5px] font-semibold uppercase tracking-wider text-slate-700">
+                  <tr className="bg-[#0B2545] text-white border-b-2 border-[#C59B27] text-[10.5px] font-semibold uppercase tracking-wider">
                     <th className="py-2 pl-2.5 pr-2 w-9">#</th>
                     <th className="py-2 px-2">Particulars & Description of SEC Transaction</th>
                     <th className="py-2 px-2 w-40">Fee Classification</th>
@@ -359,10 +363,10 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                   {/* Section I: Professional Assistance Fees */}
                   {profItems.length > 0 && (
                     <>
-                      <tr className="bg-slate-50/70">
+                      <tr className="bg-[#0B2545]/[0.05]">
                         <td
                           colSpan={6}
-                          className="py-1.5 px-2.5 text-[11px] font-semibold text-slate-800"
+                          className="py-1.5 px-2.5 text-[11px] font-semibold text-[#0B2545]"
                         >
                           I. Professional & Corporate Secretarial Assistance Fees
                         </td>
@@ -403,10 +407,10 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                   {/* Section II: Statutory SEC & BIR Reimbursable Fees */}
                   {reimbursableItems.length > 0 && (
                     <>
-                      <tr className="bg-slate-50/70">
+                      <tr className="bg-[#0B2545]/[0.05]">
                         <td
                           colSpan={6}
-                          className="py-1.5 px-2.5 text-[11px] font-semibold text-slate-800"
+                          className="py-1.5 px-2.5 text-[11px] font-semibold text-[#0B2545]"
                         >
                           II. Statutory SEC Filing Fees, BIR Documentary Stamp Tax & Out-of-Pocket
                           Disbursements
@@ -565,7 +569,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                   </div>
                 )}
 
-                <div className="flex justify-between py-1.5 border-t-2 border-slate-900 text-sm font-bold text-slate-950">
+                <div className="flex justify-between py-1.5 border-t-2 border-[#0B2545] text-sm font-bold text-[#0B2545]">
                   <span>
                     {doc.docType === 'quotation'
                       ? 'TOTAL ESTIMATED INVESTMENT:'
@@ -578,8 +582,8 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
 
                 {/* Tranche / Milestone Split Box */}
                 {doc.taxConfig.applyTrancheSplit && doc.docType !== 'receipt' && (
-                  <div className="mt-1.5 p-2.5 bg-slate-900 text-white space-y-1">
-                    <div className="flex justify-between text-[11px] text-slate-300">
+                  <div className="mt-1.5 p-2.5 bg-[#0B2545] border-l-4 border-[#C59B27] text-white space-y-1">
+                    <div className="flex justify-between text-[11px] text-slate-200">
                       <span>
                         Assistance Fee Tranche ({doc.taxConfig.profFeeBillingPercent}%):
                       </span>
@@ -587,7 +591,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                         {formatPHP(totals.trancheProfFeePayable)}
                       </span>
                     </div>
-                    <div className="flex justify-between text-[11px] text-slate-300">
+                    <div className="flex justify-between text-[11px] text-slate-200">
                       <span>
                         Statutory & Out-of-Pocket Advance ({doc.taxConfig.statutoryBillingPercent}%):
                       </span>
@@ -595,13 +599,13 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                         {formatPHP(totals.trancheReimbursablesPayable)}
                       </span>
                     </div>
-                    <div className="flex justify-between pt-1 border-t border-slate-700 text-xs font-bold">
+                    <div className="flex justify-between pt-1 border-t border-[#C59B27]/40 text-xs font-bold text-[#E5B842]">
                       <span>AMOUNT DUE THIS TRANCHE:</span>
                       <span className="font-mono text-sm tabular-nums">
                         {formatPHP(totals.trancheTotalDueNow)}
                       </span>
                     </div>
-                    <div className="flex justify-between text-[11px] text-slate-300">
+                    <div className="flex justify-between text-[11px] text-slate-200">
                       <span>Balance Upon SEC Approval:</span>
                       <span className="font-mono tabular-nums">
                         {formatPHP(totals.remainingBalanceAfterTranche)}
@@ -611,8 +615,8 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                 )}
 
                 {doc.docType === 'receipt' && (
-                  <div className="mt-1.5 p-2.5 bg-slate-900 text-white flex justify-between items-center">
-                    <span className="text-xs font-semibold uppercase tracking-wider">
+                  <div className="mt-1.5 p-2.5 bg-[#0B2545] border-l-4 border-[#C59B27] text-white flex justify-between items-center">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#E5B842]">
                       Amount Received (PHP):
                     </span>
                     <span className="font-mono text-base font-bold tabular-nums">

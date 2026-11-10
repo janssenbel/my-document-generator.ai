@@ -31,14 +31,14 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
         {/* Mobile drag handle */}
         <div className="sm:hidden w-10 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1" />
 
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-900/60">
+        <div className="flex items-center justify-between px-5 py-4 bg-[#0B2545] text-white border-b-2 border-[#C59B27]">
           <div className="flex items-center gap-2.5">
-            <FileCheck2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <FileCheck2 className="w-5 h-5 text-[#E5B842] shrink-0" />
             <div>
-              <h2 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100">
+              <h2 className="font-display text-sm font-bold text-white">
                 A4 Document Ready ({referenceNo})
               </h2>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-slate-300">
                 Standard ISO A4 Portrait (210mm × 297mm) · Safari & iPhone Compatible
               </p>
             </div>
@@ -46,7 +46,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-300 hover:text-white transition-colors"
             aria-label="Close export sheet"
           >
             <X className="w-5 h-5" />
@@ -64,13 +64,13 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({
             <button
               type="button"
               onClick={() => triggerPdfFileDownload(artifact)}
-              className="w-full min-h-[48px] px-4 py-3 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 font-semibold rounded-xl flex items-center justify-between hover:bg-slate-800 dark:hover:bg-white transition-colors"
+              className="w-full min-h-[48px] px-4 py-3 bg-[#0B2545] hover:bg-[#133E7C] border border-[#C59B27]/60 text-white font-semibold rounded-xl flex items-center justify-between transition-colors"
             >
               <span className="flex items-center gap-2.5">
-                <Download className="w-4 h-4 shrink-0" />
+                <Download className="w-4 h-4 text-[#E5B842] shrink-0" />
                 <span>Download A4 PDF ({artifact.filename})</span>
               </span>
-              <span className="text-[11px] font-mono opacity-80">210×297mm</span>
+              <span className="text-[11px] font-mono text-[#E5B842]">210×297mm</span>
             </button>
 
             {/* iOS Safari / iPhone Share & AirPrint Sheet */}

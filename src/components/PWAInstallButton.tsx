@@ -49,17 +49,17 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
           <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200/80 dark:border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-md overflow-hidden pb-safe">
             <div className="sm:hidden w-10 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1" />
 
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-900/60">
+            <div className="flex items-center justify-between px-5 py-3.5 bg-[#0B2545] text-white border-b-2 border-[#C59B27]">
               <div className="flex items-center gap-2">
-                <Smartphone className="w-4 h-4 text-slate-800 dark:text-slate-200" />
-                <h3 className="font-display text-sm font-bold text-slate-900 dark:text-white">
+                <Smartphone className="w-4 h-4 text-[#E5B842]" />
+                <h3 className="font-display text-sm font-bold text-white">
                   Add to iPhone Home Screen
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setShowGuide(false)}
-                className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-300 hover:text-white"
                 aria-label="Close guide"
               >
                 <X className="w-5 h-5" />
@@ -125,7 +125,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
               <button
                 type="button"
                 onClick={() => setShowGuide(false)}
-                className="min-h-[42px] px-5 py-2 text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-xl"
+                className="min-h-[42px] px-5 py-2 text-xs font-semibold bg-[#0B2545] hover:bg-[#133E7C] border border-[#C59B27]/60 text-white rounded-xl"
               >
                 Got It
               </button>

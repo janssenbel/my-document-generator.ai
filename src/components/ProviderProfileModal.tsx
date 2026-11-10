@@ -51,17 +51,17 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
       <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200/80 dark:border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden pb-safe">
         <div className="sm:hidden w-10 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1 shrink-0" />
 
-        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-900/60 shrink-0">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 bg-[#0B2545] text-white border-b-2 border-[#C59B27] shrink-0">
           <div className="flex items-center gap-2.5">
-            <Settings className="w-4 h-4 text-slate-800 dark:text-slate-200 shrink-0" />
-            <h2 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100">
+            <Settings className="w-4 h-4 text-[#E5B842] shrink-0" />
+            <h2 className="font-display text-sm font-bold text-white">
               Studio Settings, Firm Letterhead & iPhone Icon
             </h2>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-300 hover:text-white transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -357,9 +357,9 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                 onSave(form);
                 onClose();
               }}
-              className="min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white dark:text-slate-950 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white rounded-lg transition-colors whitespace-nowrap shrink-0"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-[#0B2545] hover:bg-[#133E7C] border border-[#C59B27]/60 rounded-xl transition-colors whitespace-nowrap shrink-0"
             >
-              <Check className="w-4 h-4" />
+              <Check className="w-4 h-4 text-[#E5B842]" />
               Save Settings
             </button>
           </div>

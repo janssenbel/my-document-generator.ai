@@ -117,7 +117,7 @@ export default function App() {
     }
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) {
-      themeMeta.setAttribute('content', isDark ? '#0f172a' : '#ffffff');
+      themeMeta.setAttribute('content', isDark ? '#07182E' : '#0B2545');
     }
     try {
       localStorage.setItem(STORAGE_KEY_THEME, isDark ? 'dark' : 'light');
@@ -480,18 +480,18 @@ export default function App() {
   });
 
   const inputBaseClass =
-    'w-full min-h-[44px] sm:min-h-[38px] px-3.5 py-2 bg-white dark:bg-slate-950/90 border border-slate-200/90 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 focus:ring-2 focus:ring-slate-900/5 dark:focus:ring-white/10 transition-all';
+    'w-full min-h-[44px] sm:min-h-[38px] px-3.5 py-2 bg-white dark:bg-[#081526] border border-[#0B2545]/20 dark:border-[#C59B27]/25 text-slate-900 dark:text-slate-100 rounded-xl focus:outline-none focus:border-[#0B2545] dark:focus:border-[#E5B842] focus:ring-2 focus:ring-[#C59B27]/25 transition-all';
 
   const textareaBaseClass =
-    'w-full min-h-[84px] px-3.5 py-2.5 bg-white dark:bg-slate-950/90 border border-slate-200/90 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl leading-relaxed focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 focus:ring-2 focus:ring-slate-900/5 dark:focus:ring-white/10 transition-all';
+    'w-full min-h-[84px] px-3.5 py-2.5 bg-white dark:bg-[#081526] border border-[#0B2545]/20 dark:border-[#C59B27]/25 text-slate-900 dark:text-slate-100 rounded-xl leading-relaxed focus:outline-none focus:border-[#0B2545] dark:focus:border-[#E5B842] focus:ring-2 focus:ring-[#C59B27]/25 transition-all';
 
   const secondaryActionBtnClass =
-    'min-h-[38px] sm:min-h-[34px] inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-slate-200/80 dark:border-white/10 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg shadow-2xs transition-colors whitespace-nowrap shrink-0';
+    'min-h-[38px] sm:min-h-[34px] inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-white dark:bg-[#0F243C] hover:border-[#C59B27] hover:bg-[#0B2545]/[0.03] dark:hover:bg-[#133E7C]/40 text-[#0B2545] dark:text-slate-100 rounded-lg shadow-2xs transition-colors whitespace-nowrap shrink-0';
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100/80 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-24 lg:pb-8">
-      {/* Top Bar Contract: Strictly 3 zones separated by gap-8 (Solid background, zero blur on iPhone Home Screen) */}
-      <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-4 sm:gap-8 px-3.5 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-white/[0.08] pt-safe">
+    <div className="min-h-screen flex flex-col bg-[#F4F6F9] dark:bg-[#06101E] text-slate-900 dark:text-slate-100 pb-24 lg:pb-8">
+      {/* Top Bar Contract: Strictly 3 zones separated by gap-8 — SEC Philippines Sovereign Navy & Seal Gold Motif */}
+      <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-4 sm:gap-8 px-3.5 sm:px-6 py-2.5 sm:py-3 bg-[#0B2545] dark:bg-[#07182E] border-b-2 border-[#C59B27] text-white pt-safe">
         {/* Zone 1: Single text element wordmark (Editable in Studio Settings) */}
         <a
           href="#studio-settings"
@@ -500,22 +500,22 @@ export default function App() {
             setIsProviderOpen(true);
           }}
           title="Click to edit Studio Brand Name & Settings"
-          className="font-display text-sm sm:text-base font-bold tracking-tight text-slate-950 dark:text-white hover:opacity-80 transition-opacity truncate max-w-[190px] sm:max-w-none"
+          className="font-display text-sm sm:text-base font-bold tracking-tight text-white hover:text-[#E5B842] transition-colors truncate max-w-[190px] sm:max-w-none"
         >
           {(provider.appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio'}
         </a>
 
         {/* Zone 2: 4 concise single-line navigation links */}
-        <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-slate-600 dark:text-slate-300">
+        <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-slate-200">
           <button
             type="button"
             onClick={() => {
               setActiveTab('items');
               setMobilePane('edit');
             }}
-            className={`hover:text-slate-950 dark:hover:text-white transition-colors whitespace-nowrap shrink-0 ${
+            className={`hover:text-[#E5B842] transition-colors whitespace-nowrap shrink-0 ${
               activeTab === 'items'
-                ? 'text-slate-950 dark:text-white underline underline-offset-4'
+                ? 'text-[#E5B842] font-semibold underline decoration-[#C59B27] decoration-2 underline-offset-4'
                 : ''
             }`}
           >
@@ -524,14 +524,14 @@ export default function App() {
           <button
             type="button"
             onClick={() => setIsCalcOpen(true)}
-            className="hover:text-slate-950 dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#E5B842] transition-colors whitespace-nowrap shrink-0"
           >
             SEC Fee Calculator
           </button>
           <button
             type="button"
             onClick={() => setIsProviderOpen(true)}
-            className="hover:text-slate-950 dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#E5B842] transition-colors whitespace-nowrap shrink-0"
           >
             Studio Settings
           </button>
@@ -541,9 +541,9 @@ export default function App() {
               setActiveTab('saved');
               setMobilePane('edit');
             }}
-            className={`hover:text-slate-950 dark:hover:text-white transition-colors whitespace-nowrap shrink-0 ${
+            className={`hover:text-[#E5B842] transition-colors whitespace-nowrap shrink-0 ${
               activeTab === 'saved'
-                ? 'text-slate-950 dark:text-white underline underline-offset-4'
+                ? 'text-[#E5B842] font-semibold underline decoration-[#C59B27] decoration-2 underline-offset-4'
                 : ''
             }`}
           >
@@ -556,7 +556,7 @@ export default function App() {
           <button
             type="button"
             onClick={handleExportOrPrintA4}
-            className="min-h-[38px] sm:min-h-[40px] inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 text-xs font-semibold text-white dark:text-slate-950 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white rounded-xl shadow-xs transition-colors whitespace-nowrap shrink-0"
+            className="min-h-[38px] sm:min-h-[40px] inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 text-xs font-bold text-[#07182E] bg-[#C59B27] hover:bg-[#E5B842] rounded-xl shadow-xs transition-colors whitespace-nowrap shrink-0"
           >
             <Download className="w-3.5 h-3.5" />
             <span className="sm:hidden">Export A4 PDF</span>
@@ -565,15 +565,15 @@ export default function App() {
         </div>
       </header>
 
-      {/* Workspace Control Bar (iPhone Portrait Optimized: Compact Segmented Bar + Single-Row Scrollable Quick Actions) */}
-      <div className="no-print bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-white/[0.08] px-3 sm:px-6 py-2.5 sm:py-3">
+      {/* Workspace Control Bar (SEC Philippines Navy & Gold Accents) */}
+      <div className="no-print bg-white dark:bg-[#0B192C] border-b border-[#0B2545]/15 dark:border-[#C59B27]/20 px-3 sm:px-6 py-2.5 sm:py-3">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
           {/* Document Type Segmented Switcher */}
           <div className="flex items-center gap-2">
-            <span className="hidden sm:inline text-xs font-semibold text-slate-500 dark:text-slate-400 mr-1 shrink-0">
+            <span className="hidden sm:inline text-xs font-semibold text-[#0B2545] dark:text-[#E5B842] mr-1 shrink-0">
               Document:
             </span>
-            <div className="grid grid-cols-4 sm:flex items-center gap-1 p-1 bg-slate-100/90 dark:bg-slate-800/80 border border-slate-200/60 dark:border-white/[0.06] rounded-xl w-full sm:w-auto">
+            <div className="grid grid-cols-4 sm:flex items-center gap-1 p-1 bg-[#0B2545]/[0.06] dark:bg-[#071526] border border-[#0B2545]/15 dark:border-[#C59B27]/25 rounded-xl w-full sm:w-auto">
               {DOC_TYPE_OPTIONS.map((opt) => (
                 <button
                   key={opt.id}
@@ -581,8 +581,8 @@ export default function App() {
                   onClick={() => handleSelectDocType(opt.id)}
                   className={`min-h-[36px] sm:min-h-[32px] px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg transition-all whitespace-nowrap shrink-0 ${
                     doc.docType === opt.id
-                      ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 shadow-xs'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
+                      ? 'bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] shadow-xs'
+                      : 'text-slate-700 dark:text-slate-300 hover:text-[#0B2545] dark:hover:text-[#E5B842]'
                   }`}
                 >
                   <span className="sm:hidden">{opt.shortLabel}</span>
@@ -592,10 +592,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right Toolbar: Single-Row Horizontal Scroll on iPhone Portrait so buttons never stack into tall blocks */}
+          {/* Right Toolbar: Single-Row Horizontal Scroll on iPhone Portrait */}
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 sm:flex-wrap sm:justify-end">
             {savedToast && (
-              <span className="text-xs font-medium text-emerald-700 dark:text-emerald-400 px-2 py-1 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 rounded-lg whitespace-nowrap shrink-0">
+              <span className="text-xs font-semibold text-[#0B2545] dark:text-[#E5B842] px-2.5 py-1 bg-[#C59B27]/20 border border-[#C59B27]/50 rounded-lg whitespace-nowrap shrink-0">
                 {savedToast}
               </span>
             )}
@@ -606,7 +606,7 @@ export default function App() {
               onClick={() => setIsProviderOpen(true)}
               className={secondaryActionBtnClass}
             >
-              <Settings className="w-3.5 h-3.5" />
+              <Settings className="w-3.5 h-3.5 text-[#C59B27]" />
               <span>Studio Settings</span>
             </button>
 
@@ -626,12 +626,12 @@ export default function App() {
             >
               {isDark ? (
                 <>
-                  <Sun className="w-3.5 h-3.5 text-amber-400" />
+                  <Sun className="w-3.5 h-3.5 text-[#E5B842]" />
                   <span>Light</span>
                 </>
               ) : (
                 <>
-                  <Moon className="w-3.5 h-3.5 text-slate-700" />
+                  <Moon className="w-3.5 h-3.5 text-[#0B2545]" />
                   <span>Dark</span>
                 </>
               )}
@@ -642,7 +642,7 @@ export default function App() {
               onClick={handleDirectSafariPrint}
               className={secondaryActionBtnClass}
             >
-              <Printer className="w-3.5 h-3.5" />
+              <Printer className="w-3.5 h-3.5 text-[#C59B27]" />
               <span>Safari Print</span>
             </button>
 
@@ -651,7 +651,7 @@ export default function App() {
               onClick={handleSaveToLedger}
               className={secondaryActionBtnClass}
             >
-              <Bookmark className="w-3.5 h-3.5" />
+              <Bookmark className="w-3.5 h-3.5 text-[#C59B27]" />
               <span>Save</span>
             </button>
 
@@ -667,7 +667,7 @@ export default function App() {
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="w-3.5 h-3.5 text-[#C59B27]" />
                   <span>Copy Summary</span>
                 </>
               )}
@@ -676,7 +676,7 @@ export default function App() {
             <button
               type="button"
               onClick={handleConvertWorkflow}
-              className="min-h-[38px] sm:min-h-[34px] inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold border border-slate-900/80 dark:border-white/25 bg-slate-900/5 dark:bg-white/[0.06] hover:bg-slate-900 dark:hover:bg-slate-100 hover:text-white dark:hover:text-slate-950 text-slate-900 dark:text-slate-100 rounded-lg transition-colors whitespace-nowrap shrink-0"
+              className="min-h-[38px] sm:min-h-[34px] inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold border border-[#C59B27] bg-[#C59B27]/15 hover:bg-[#0B2545] dark:hover:bg-[#C59B27] text-[#0B2545] dark:text-[#E5B842] hover:text-white dark:hover:text-[#07182E] rounded-lg transition-colors whitespace-nowrap shrink-0"
             >
               <span>{DOC_TYPE_OPTIONS.find((d) => d.id === doc.docType)?.nextLabel}</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -687,14 +687,14 @@ export default function App() {
 
       {/* Mobile-Only View Switcher Banner (Edit Form vs. Live A4 Sheet) */}
       <div className="no-print lg:hidden px-3 sm:px-4 pt-3">
-        <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-200/75 dark:bg-slate-900 border border-slate-200/80 dark:border-white/[0.08] rounded-xl">
+        <div className="grid grid-cols-2 gap-1.5 p-1 bg-[#0B2545]/10 dark:bg-[#0B192C] border border-[#0B2545]/15 dark:border-[#C59B27]/25 rounded-xl">
           <button
             type="button"
             onClick={() => setMobilePane('edit')}
             className={`min-h-[42px] flex items-center justify-center gap-1.5 px-2 text-xs font-semibold rounded-lg transition-all ${
               mobilePane === 'edit'
-                ? 'bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-xs'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] shadow-xs'
+                : 'text-slate-700 dark:text-slate-300'
             }`}
           >
             <Edit3 className="w-3.5 h-3.5 shrink-0" />
@@ -705,8 +705,8 @@ export default function App() {
             onClick={() => setMobilePane('preview')}
             className={`min-h-[42px] flex items-center justify-center gap-1.5 px-2 text-xs font-semibold rounded-lg transition-all ${
               mobilePane === 'preview'
-                ? 'bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-xs'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] shadow-xs'
+                : 'text-slate-700 dark:text-slate-300'
             }`}
           >
             <Eye className="w-3.5 h-3.5 shrink-0" />
@@ -722,25 +722,25 @@ export default function App() {
       >
         {/* Left Column: Editor & SEC Presets (5 Cols on Desktop, Toggled on Mobile, Hidden on Print) */}
         <section
-          className={`no-print lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/[0.08] shadow-xs rounded-2xl overflow-hidden flex flex-col ${
+          className={`no-print lg:col-span-5 bg-white dark:bg-[#0B192C] border border-[#0B2545]/15 dark:border-[#C59B27]/25 shadow-xs rounded-2xl overflow-hidden flex flex-col ${
             mobilePane === 'preview' ? 'hidden lg:flex' : 'flex'
           }`}
         >
-          {/* SEC Transaction Template Dropdown Selector */}
-          <div className="p-3.5 sm:p-4 border-b border-slate-200/70 dark:border-white/[0.08] bg-slate-50/60 dark:bg-slate-900/60 space-y-2">
+          {/* SEC Transaction Template Dropdown Selector — SEC Navy & Seal Gold Header */}
+          <div className="p-3.5 sm:p-4 border-b border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-[#0B2545]/[0.04] dark:bg-[#071526] space-y-2">
             <div className="flex items-center justify-between gap-2">
               <label
                 htmlFor="sec-transaction-template-select"
-                className="text-xs font-semibold text-slate-700 dark:text-slate-300"
+                className="text-xs font-bold text-[#0B2545] dark:text-[#E5B842]"
               >
                 SEC Philippines Transaction Template
               </label>
               <button
                 type="button"
                 onClick={() => setIsCalcOpen(true)}
-                className="min-h-[32px] inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-white/10 rounded-lg text-slate-900 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors whitespace-nowrap shrink-0"
+                className="min-h-[32px] inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold bg-[#0B2545] dark:bg-[#133E7C] border border-[#C59B27]/60 rounded-lg text-white hover:bg-[#133E7C] transition-colors whitespace-nowrap shrink-0"
               >
-                <Calculator className="w-3.5 h-3.5" />
+                <Calculator className="w-3.5 h-3.5 text-[#E5B842]" />
                 <span>Fee Calculator</span>
               </button>
             </div>
@@ -751,7 +751,7 @@ export default function App() {
               onChange={(e) =>
                 handleSelectSECPreset(e.target.value as SECTransactionCategory)
               }
-              className="w-full min-h-[44px] sm:min-h-[40px] px-3.5 py-2 text-xs font-semibold bg-white dark:bg-slate-950/90 border border-slate-200/90 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:outline-none focus:border-slate-900 dark:focus:border-slate-300 focus:ring-2 focus:ring-slate-900/5 dark:focus:ring-white/10 transition-all"
+              className="w-full min-h-[44px] sm:min-h-[40px] px-3.5 py-2 text-xs font-semibold bg-white dark:bg-[#081526] border border-[#0B2545]/25 dark:border-[#C59B27]/35 text-[#0B2545] dark:text-slate-100 rounded-xl focus:outline-none focus:border-[#0B2545] dark:focus:border-[#E5B842] focus:ring-2 focus:ring-[#C59B27]/25 transition-all"
             >
               {(Object.keys(SEC_TRANSACTION_PRESETS) as SECTransactionCategory[]).map(
                 (catKey) => {
@@ -766,11 +766,11 @@ export default function App() {
             </select>
           </div>
 
-          {/* Editor Navigation Tabs — Bordered & Highlighted When Selected */}
+          {/* Editor Navigation Tabs — Bordered & Highlighted in SEC Royal Navy & Seal Gold */}
           <div
             role="tablist"
             aria-label="Document Builder Sections"
-            className="flex flex-wrap items-center gap-1.5 p-2.5 sm:p-3 border-b border-slate-200/80 dark:border-white/[0.08] bg-slate-100/70 dark:bg-slate-950/60"
+            className="flex flex-wrap items-center gap-1.5 p-2.5 sm:p-3 border-b border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-[#0B2545]/[0.06] dark:bg-[#061222]"
           >
             {[
               { id: 'items', label: '1. Fees & Scope' },
@@ -792,8 +792,8 @@ export default function App() {
                   onClick={() => setActiveTab(tab.id as EditorTab)}
                   className={`flex-1 sm:flex-initial min-h-[40px] px-3 py-2 text-xs font-semibold rounded-xl border transition-all whitespace-nowrap text-center justify-center inline-flex items-center ${
                     isSelected
-                      ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 border-slate-900 dark:border-slate-100 shadow-sm ring-2 ring-slate-900/15 dark:ring-white/20'
-                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-300/90 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-950 dark:hover:text-white'
+                      ? 'bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border-[#C59B27] shadow-sm ring-2 ring-[#C59B27]/35'
+                      : 'bg-white dark:bg-[#0B192C] text-slate-700 dark:text-slate-200 border-[#0B2545]/20 dark:border-[#C59B27]/25 hover:border-[#C59B27] hover:bg-[#0B2545]/[0.03] dark:hover:bg-[#133E7C]/30 hover:text-[#0B2545] dark:hover:text-[#E5B842]'
                   }`}
                 >
                   {tab.label}
@@ -808,7 +808,7 @@ export default function App() {
             {activeTab === 'items' && (
               <div className="space-y-4">
                 <div>
-                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                  <label className="block font-semibold text-[#0B2545] dark:text-slate-200 mb-1.5">
                     SEC Transaction Title / Subject
                   </label>
                   <textarea
@@ -821,7 +821,7 @@ export default function App() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
-                    <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label className="block font-semibold text-[#0B2545] dark:text-slate-200 mb-1.5">
                       SEC Portal / Division Track
                     </label>
                     <textarea
@@ -832,7 +832,7 @@ export default function App() {
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                    <label className="block font-semibold text-[#0B2545] dark:text-slate-200 mb-1.5">
                       Estimated Processing Timeline
                     </label>
                     <textarea
@@ -845,7 +845,7 @@ export default function App() {
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                  <label className="block font-semibold text-[#0B2545] dark:text-slate-200 mb-1.5">
                     Scope of Corporate Secretarial Assistance
                   </label>
                   <textarea
@@ -857,16 +857,16 @@ export default function App() {
                 </div>
 
                 {/* Line Items List */}
-                <div className="pt-4 border-t border-slate-200/70 dark:border-white/[0.08]">
+                <div className="pt-4 border-t border-[#0B2545]/15 dark:border-[#C59B27]/20">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3.5">
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                    <span className="font-bold text-[#0B2545] dark:text-[#E5B842]">
                       Itemized Fee Breakdown ({doc.lineItems.length} items)
                     </span>
                     <div className="grid grid-cols-3 sm:flex items-center gap-1.5">
                       <button
                         type="button"
                         onClick={() => handleAddLineItem('professional_fee')}
-                        className="min-h-[38px] sm:min-h-[32px] inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-lg hover:bg-slate-800 dark:hover:bg-white transition-colors whitespace-nowrap"
+                        className="min-h-[38px] sm:min-h-[32px] inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-semibold bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] rounded-lg hover:bg-[#133E7C] dark:hover:bg-[#E5B842] transition-colors whitespace-nowrap"
                       >
                         <Plus className="w-3 h-3 shrink-0" />
                         <span>Assistance</span>
@@ -874,17 +874,17 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => handleAddLineItem('sec_statutory_fee')}
-                        className="min-h-[38px] sm:min-h-[32px] inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium border border-slate-200/90 dark:border-white/10 bg-white dark:bg-slate-800/90 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg transition-colors whitespace-nowrap"
+                        className="min-h-[38px] sm:min-h-[32px] inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium border border-[#0B2545]/20 dark:border-[#C59B27]/30 bg-white dark:bg-[#0F243C] hover:border-[#C59B27] text-[#0B2545] dark:text-slate-100 rounded-lg transition-colors whitespace-nowrap"
                       >
-                        <Plus className="w-3 h-3 shrink-0" />
+                        <Plus className="w-3 h-3 text-[#C59B27] shrink-0" />
                         <span>SEC Fee</span>
                       </button>
                       <button
                         type="button"
                         onClick={() => handleAddLineItem('out_of_pocket')}
-                        className="min-h-[38px] sm:min-h-[32px] inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium border border-slate-200/90 dark:border-white/10 bg-white dark:bg-slate-800/90 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg transition-colors whitespace-nowrap"
+                        className="min-h-[38px] sm:min-h-[32px] inline-flex items-center justify-center gap-1 px-2.5 py-1.5 text-[11px] font-medium border border-[#0B2545]/20 dark:border-[#C59B27]/30 bg-white dark:bg-[#0F243C] hover:border-[#C59B27] text-[#0B2545] dark:text-slate-100 rounded-lg transition-colors whitespace-nowrap"
                       >
-                        <Plus className="w-3 h-3 shrink-0" />
+                        <Plus className="w-3 h-3 text-[#C59B27] shrink-0" />
                         <span>Out-of-Pocket</span>
                       </button>
                     </div>
@@ -894,12 +894,12 @@ export default function App() {
                     {doc.lineItems.map((item, idx) => (
                       <div
                         key={item.id}
-                        className="p-3.5 sm:p-4 border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/60 dark:bg-slate-950/60 rounded-2xl space-y-3.5"
+                        className="p-3.5 sm:p-4 border border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-[#0B2545]/[0.02] dark:bg-[#071526] rounded-2xl space-y-3.5"
                       >
                         {/* Card Top Header: Optimized for iPhone Portrait so Category Select gets full width */}
                         <div className="space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-between gap-2">
                           <div className="flex items-center justify-between">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-200/70 dark:bg-slate-800 font-mono text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-[#0B2545] text-[#E5B842] font-mono text-[11px] font-bold">
                               Item #{String(idx + 1).padStart(2, '0')}
                             </span>
                             <button
@@ -1589,7 +1589,7 @@ export default function App() {
               <div className="space-y-6">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                    <span className="font-bold text-[#0B2545] dark:text-[#E5B842]">
                       SEC Documentary Requirements Checklist ({doc.requirementsChecklist.length})
                     </span>
                     <button
@@ -1603,7 +1603,7 @@ export default function App() {
                           ],
                         })
                       }
-                      className="min-h-[38px] sm:min-h-[32px] inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-lg hover:bg-slate-800 dark:hover:bg-white transition-colors whitespace-nowrap shrink-0"
+                      className="min-h-[38px] sm:min-h-[32px] inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] rounded-lg hover:bg-[#133E7C] dark:hover:bg-[#E5B842] transition-colors whitespace-nowrap shrink-0"
                     >
                       <Plus className="w-3.5 h-3.5" /> Add Requirement
                     </button>
@@ -1613,10 +1613,10 @@ export default function App() {
                     {doc.requirementsChecklist.map((req, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 sm:p-4 border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/60 dark:bg-slate-950/60 rounded-2xl space-y-2.5"
+                        className="p-3.5 sm:p-4 border border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-[#0B2545]/[0.02] dark:bg-[#071526] rounded-2xl space-y-2.5"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-200/70 dark:bg-slate-800 font-mono text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-[#0B2545] text-[#E5B842] font-mono text-[11px] font-bold">
                             Requirement #{String(idx + 1).padStart(2, '0')}
                           </span>
                           <button
@@ -1651,9 +1651,9 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="pt-5 border-t border-slate-200/70 dark:border-white/[0.08]">
+                <div className="pt-5 border-t border-[#0B2545]/15 dark:border-[#C59B27]/20">
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                    <span className="font-bold text-[#0B2545] dark:text-[#E5B842]">
                       Engagement Terms, Tax Remarks & Footnotes ({doc.notesAndTerms.length})
                     </span>
                     <button
@@ -1667,7 +1667,7 @@ export default function App() {
                           ],
                         })
                       }
-                      className="min-h-[38px] sm:min-h-[32px] inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-lg hover:bg-slate-800 dark:hover:bg-white transition-colors whitespace-nowrap shrink-0"
+                      className="min-h-[38px] sm:min-h-[32px] inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-semibold bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] rounded-lg hover:bg-[#133E7C] dark:hover:bg-[#E5B842] transition-colors whitespace-nowrap shrink-0"
                     >
                       <Plus className="w-3.5 h-3.5" /> Add Note
                     </button>
@@ -1677,10 +1677,10 @@ export default function App() {
                     {doc.notesAndTerms.map((note, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 sm:p-4 border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/60 dark:bg-slate-950/60 rounded-2xl space-y-2.5"
+                        className="p-3.5 sm:p-4 border border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-[#0B2545]/[0.02] dark:bg-[#071526] rounded-2xl space-y-2.5"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-200/70 dark:bg-slate-800 font-mono text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-[#0B2545] text-[#E5B842] font-mono text-[11px] font-bold">
                             Note #{String(idx + 1).padStart(2, '0')}
                           </span>
                           <button
@@ -1732,7 +1732,7 @@ export default function App() {
                   <select
                     value={ledgerFilterType}
                     onChange={(e) => setLedgerFilterType(e.target.value as DocumentType | 'all')}
-                    className="min-h-[44px] sm:min-h-[38px] px-3 py-1.5 bg-white dark:bg-slate-950/90 border border-slate-200/90 dark:border-white/10 text-slate-800 dark:text-slate-200 rounded-xl"
+                    className="min-h-[44px] sm:min-h-[38px] px-3 py-1.5 bg-white dark:bg-[#081526] border border-[#0B2545]/20 dark:border-[#C59B27]/25 text-slate-800 dark:text-slate-200 rounded-xl"
                   >
                     <option value="all">All Types</option>
                     <option value="quotation">Quotations</option>
@@ -1743,10 +1743,10 @@ export default function App() {
                 </div>
 
                 {filteredLedger.length === 0 ? (
-                  <div className="p-8 text-center border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-950/60 rounded-2xl space-y-3">
-                    <FolderOpen className="w-6 h-6 text-slate-400 mx-auto" />
+                  <div className="p-8 text-center border border-[#0B2545]/15 dark:border-[#C59B27]/25 bg-[#0B2545]/[0.02] dark:bg-[#071526] rounded-2xl space-y-3">
+                    <FolderOpen className="w-6 h-6 text-[#C59B27] mx-auto" />
                     <div className="space-y-1">
-                      <div className="font-semibold text-slate-800 dark:text-slate-200">
+                      <div className="font-semibold text-[#0B2545] dark:text-[#E5B842]">
                         {savedDocs.length === 0
                           ? 'Your Saved Ledger is Empty'
                           : 'No Matching SEC Documents'}
@@ -1761,7 +1761,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={handleSaveToLedger}
-                        className="min-h-[38px] inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-xl hover:bg-slate-800 dark:hover:bg-white transition-colors"
+                        className="min-h-[38px] inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] border border-[#C59B27] rounded-xl hover:bg-[#133E7C] dark:hover:bg-[#E5B842] transition-colors"
                       >
                         <Bookmark className="w-3.5 h-3.5" />
                         <span>Save Current Document ({doc.referenceNo})</span>
@@ -1769,7 +1769,7 @@ export default function App() {
                     )}
                   </div>
                 ) : (
-                  <div className="divide-y divide-slate-200/70 dark:divide-white/[0.08] border border-slate-200/80 dark:border-white/[0.08] rounded-2xl overflow-hidden">
+                  <div className="divide-y divide-[#0B2545]/10 dark:divide-[#C59B27]/20 border border-[#0B2545]/15 dark:border-[#C59B27]/25 rounded-2xl overflow-hidden">
                     {filteredLedger.map((item) => {
                       const itemTotals = calculateDocumentTotals(item);
                       const isCurrent = item.id === doc.id;
@@ -1778,13 +1778,13 @@ export default function App() {
                           key={item.id}
                           className={`p-3.5 sm:p-4 flex items-start justify-between gap-3 transition-colors ${
                             isCurrent
-                              ? 'bg-slate-50 dark:bg-slate-800/70'
-                              : 'bg-white dark:bg-slate-900 hover:bg-slate-50/80 dark:hover:bg-slate-800/40'
+                              ? 'bg-[#0B2545]/[0.05] dark:bg-[#133E7C]/30'
+                              : 'bg-white dark:bg-[#0B192C] hover:bg-[#0B2545]/[0.03] dark:hover:bg-[#133E7C]/20'
                           }`}
                         >
                           <div className="space-y-1 min-w-0">
                             <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400">
-                              <span className="font-mono font-semibold text-slate-900 dark:text-slate-100">
+                              <span className="font-mono font-semibold text-[#0B2545] dark:text-[#E5B842]">
                                 {item.referenceNo}
                               </span>
                               <span aria-hidden="true">·</span>
@@ -1803,7 +1803,7 @@ export default function App() {
                           </div>
 
                           <div className="text-right shrink-0 space-y-1.5">
-                            <div className="font-mono font-bold text-slate-950 dark:text-white tabular-nums">
+                            <div className="font-mono font-bold text-[#0B2545] dark:text-[#E5B842] tabular-nums">
                               {formatPHP(itemTotals.fullNetPayable)}
                             </div>
                             <div className="flex items-center justify-end gap-1.5">
@@ -1814,7 +1814,7 @@ export default function App() {
                                   setActiveTab('items');
                                   showNotice(`Loaded ${item.referenceNo}`);
                                 }}
-                                className="min-h-[34px] inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-lg hover:bg-slate-800 dark:hover:bg-white transition-colors"
+                                className="min-h-[34px] inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold bg-[#0B2545] dark:bg-[#C59B27] text-white dark:text-[#07182E] rounded-lg hover:bg-[#133E7C] dark:hover:bg-[#E5B842] transition-colors"
                               >
                                 <FileText className="w-3 h-3" /> Open
                               </button>
@@ -1850,10 +1850,10 @@ export default function App() {
         </section>
       </main>
 
-      {/* Fixed Bottom Tab Bar for iPhone / Mobile Viewports (< 1024px) */}
+      {/* Fixed Bottom Tab Bar for iPhone / Mobile Viewports (< 1024px) — SEC Philippines Navy & Gold Motif */}
       <nav
         aria-label="Mobile quick navigation"
-        className="no-print lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-slate-900 border-t border-slate-200/70 dark:border-white/[0.08] grid grid-cols-5 items-center pb-safe"
+        className="no-print lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0B2545] dark:bg-[#07182E] border-t-2 border-[#C59B27] text-white grid grid-cols-5 items-center pb-safe"
       >
         <button
           type="button"
@@ -1863,8 +1863,8 @@ export default function App() {
           }}
           className={`min-h-[54px] flex flex-col items-center justify-center py-1.5 ${
             mobilePane === 'edit' && activeTab !== 'saved'
-              ? 'text-slate-950 dark:text-white font-semibold'
-              : 'text-slate-500 dark:text-slate-400'
+              ? 'text-[#E5B842] font-bold'
+              : 'text-slate-300'
           }`}
         >
           <Edit3 className="w-5 h-5" />
@@ -1876,8 +1876,8 @@ export default function App() {
           onClick={() => setMobilePane('preview')}
           className={`min-h-[54px] flex flex-col items-center justify-center py-1.5 ${
             mobilePane === 'preview'
-              ? 'text-slate-950 dark:text-white font-semibold'
-              : 'text-slate-500 dark:text-slate-400'
+              ? 'text-[#E5B842] font-bold'
+              : 'text-slate-300'
           }`}
         >
           <Eye className="w-5 h-5" />
@@ -1887,7 +1887,7 @@ export default function App() {
         <button
           type="button"
           onClick={() => setIsProviderOpen(true)}
-          className="min-h-[54px] flex flex-col items-center justify-center py-1.5 text-slate-500 dark:text-slate-400"
+          className="min-h-[54px] flex flex-col items-center justify-center py-1.5 text-slate-300 hover:text-[#E5B842]"
         >
           <Settings className="w-5 h-5" />
           <span className="text-[10px] mt-1 tracking-tight">Settings</span>
@@ -1901,8 +1901,8 @@ export default function App() {
           }}
           className={`min-h-[54px] flex flex-col items-center justify-center py-1.5 ${
             mobilePane === 'edit' && activeTab === 'saved'
-              ? 'text-slate-950 dark:text-white font-semibold'
-              : 'text-slate-500 dark:text-slate-400'
+              ? 'text-[#E5B842] font-bold'
+              : 'text-slate-300'
           }`}
         >
           <FolderOpen className="w-5 h-5" />
@@ -1912,7 +1912,7 @@ export default function App() {
         <button
           type="button"
           onClick={handleExportOrPrintA4}
-          className="min-h-[54px] flex flex-col items-center justify-center py-1.5 text-slate-950 dark:text-white font-semibold"
+          className="min-h-[54px] flex flex-col items-center justify-center py-1.5 text-[#E5B842] font-bold"
         >
           <Download className="w-5 h-5" />
           <span className="text-[10px] mt-1 tracking-tight">A4 PDF</span>
