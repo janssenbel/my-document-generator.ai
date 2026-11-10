@@ -492,7 +492,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-[#F4F6F9] dark:bg-[#06101E] text-slate-900 dark:text-slate-100 pb-24 lg:pb-8">
       {/* Top Bar Contract: Strictly 3 zones separated by gap-8 — SEC Philippines Sovereign Navy & Seal Gold Motif */}
       <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-4 sm:gap-8 px-3.5 sm:px-6 py-2.5 sm:py-3 bg-[#0B2545] dark:bg-[#07182E] border-b-2 border-[#C59B27] text-white pt-safe">
-        {/* Zone 1: Single text element wordmark (Editable in Studio Settings) */}
+        {/* Zone 1: Brand Icon (White Printer on Pink Background) + Studio Title */}
         <a
           href="#studio-settings"
           onClick={(e) => {
@@ -500,9 +500,33 @@ export default function App() {
             setIsProviderOpen(true);
           }}
           title="Click to edit Studio Brand Name & Settings"
-          className="font-display text-sm sm:text-base font-bold tracking-tight text-white hover:text-[#E5B842] transition-colors truncate max-w-[190px] sm:max-w-none"
+          className="inline-flex items-center gap-2.5 font-display text-sm sm:text-base font-bold tracking-tight text-white hover:text-[#E5B842] transition-colors min-w-0 max-w-[230px] sm:max-w-none"
         >
-          {(provider.appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio'}
+          <svg
+            viewBox="0 0 180 180"
+            aria-hidden="true"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl shadow-xs shrink-0"
+          >
+            <defs>
+              <linearGradient id="headerPinkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#EC4899" />
+                <stop offset="100%" stopColor="#DB2777" />
+              </linearGradient>
+            </defs>
+            <rect width="180" height="180" fill="url(#headerPinkBg)" />
+            <rect x="54" y="26" width="72" height="25" rx="6" fill="#FFFFFF" />
+            <rect x="28" y="56" width="124" height="64" rx="16" fill="#FFFFFF" />
+            <circle cx="130" cy="76" r="5.5" fill="#DB2777" />
+            <circle cx="114" cy="76" r="4" fill="#F472B6" />
+            <rect x="48" y="98" width="84" height="26" rx="6" fill="#DB2777" />
+            <rect x="54" y="104" width="72" height="48" rx="6" fill="#FFFFFF" />
+            <rect x="66" y="118" width="48" height="5.5" rx="2.75" fill="#EC4899" />
+            <rect x="66" y="131" width="34" height="5.5" rx="2.75" fill="#EC4899" />
+          </svg>
+          <span className="truncate">
+            {(provider.appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() ||
+              'SEC Studio'}
+          </span>
         </a>
 
         {/* Zone 2: 4 concise single-line navigation links */}

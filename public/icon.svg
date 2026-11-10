@@ -1,20 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="512" height="512">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
+    <linearGradient id="pinkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#DB2777" />
     </linearGradient>
   </defs>
-  <rect width="512" height="512" fill="url(#bg)" />
-  <!-- Legal Document Pillar & SEC Seal (No outer border) -->
-  <rect x="128" y="96" width="256" height="320" rx="22" fill="#ffffff" />
-  <rect x="164" y="144" width="120" height="18" rx="9" fill="#0f172a" />
-  <rect x="164" y="184" width="184" height="11" rx="5.5" fill="#64748b" />
-  <rect x="164" y="210" width="184" height="11" rx="5.5" fill="#64748b" />
-  <rect x="164" y="236" width="144" height="11" rx="5.5" fill="#64748b" />
-  <rect x="164" y="274" width="184" height="2" fill="#e2e8f0" />
-  <rect x="164" y="294" width="96" height="14" rx="7" fill="#0f172a" />
-  <!-- SEC Emblem -->
-  <circle cx="348" cy="372" r="56" fill="#f59e0b" />
-  <text x="348" y="383" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="32" fill="#0f172a">SEC</text>
+  <!-- Full-bleed Pink Background (no outer border) -->
+  <rect width="180" height="180" fill="url(#pinkBg)" />
+  <!-- Top Paper Feeder (White) -->
+  <rect x="54" y="26" width="72" height="25" rx="6" fill="#FFFFFF" />
+  <!-- Main Printer Body (White) -->
+  <rect x="28" y="56" width="124" height="64" rx="16" fill="#FFFFFF" />
+  <!-- Printer Status LED Dots (Pink) -->
+  <circle cx="130" cy="76" r="5.5" fill="#DB2777" />
+  <circle cx="114" cy="76" r="4" fill="#F472B6" />
+  <!-- Recessed Paper Output Slot (Pink) -->
+  <rect x="48" y="98" width="84" height="26" rx="6" fill="#DB2777" />
+  <!-- Bottom Printed Paper (White) -->
+  <rect x="54" y="104" width="72" height="48" rx="6" fill="#FFFFFF" />
+  <!-- Printed Document Lines (Pink) -->
+  <rect x="66" y="118" width="48" height="5.5" rx="2.75" fill="#EC4899" />
+  <rect x="66" y="131" width="34" height="5.5" rx="2.75" fill="#EC4899" />
 </svg>

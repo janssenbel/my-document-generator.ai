@@ -82,7 +82,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                     {appBrandName || 'SEC Studio'}
                   </div>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                    180×180px Apple Touch Icon · Badge: {appIconMonogram || 'SEC'}
+                    180×180px Apple Touch Icon · White Printer on Pink
                   </p>
                   <button
                     type="button"
@@ -92,7 +92,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                     }}
                     className="mt-1.5 text-[11px] font-semibold text-slate-900 dark:text-slate-200 underline underline-offset-2"
                   >
-                    Customize Studio Name & Icon Badge
+                    Customize Studio Name & Settings
                   </button>
                 </div>
               </div>

@@ -5,7 +5,7 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
 }
 
-export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
+export function generateDynamicAppleTouchIcon(_monogram = 'SEC'): string {
   if (typeof document === 'undefined') return '';
   try {
     const canvas = document.createElement('canvas');
@@ -14,52 +14,57 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
     const ctx = canvas.getContext('2d');
     if (!ctx) return '';
 
-    // Full-bleed SEC Philippines Royal Navy background (#0B2545 -> #133E7C) with zero border
+    // Full-bleed Pink background (#EC4899 -> #DB2777) with zero outer border
     const grad = ctx.createLinearGradient(0, 0, 180, 180);
-    grad.addColorStop(0, '#0B2545');
-    grad.addColorStop(1, '#133E7C');
+    grad.addColorStop(0, '#EC4899');
+    grad.addColorStop(1, '#DB2777');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 180, 180);
 
-    // Crisp White A4 Document sheet
-    ctx.fillStyle = '#ffffff';
+    // 1. Top Paper Feeder (White)
+    ctx.fillStyle = '#FFFFFF';
     ctx.beginPath();
-    ctx.roundRect(42, 28, 92, 118, 9);
+    ctx.roundRect(54, 26, 72, 25, 6);
     ctx.fill();
 
-    // SEC Navy & Gold Document Header Bar
-    ctx.fillStyle = '#0B2545';
-    ctx.fillRect(54, 42, 54, 6);
-    ctx.fillStyle = '#C59B27';
-    ctx.fillRect(54, 50, 68, 2.5);
-
-    // Document Text Lines
-    ctx.fillStyle = '#64748b';
-    ctx.fillRect(54, 60, 68, 4);
-    ctx.fillRect(54, 70, 68, 4);
-    ctx.fillRect(54, 80, 50, 4);
-
-    // Table Divider
-    ctx.fillStyle = '#cbd5e1';
-    ctx.fillRect(54, 95, 68, 2);
-
-    // Total Row Bar
-    ctx.fillStyle = '#0B2545';
-    ctx.fillRect(54, 104, 38, 5);
-
-    // Official SEC Seal Gold Badge at bottom right (borderless)
+    // 2. Main Printer Body (White)
+    ctx.fillStyle = '#FFFFFF';
     ctx.beginPath();
-    ctx.arc(124, 130, 24, 0, Math.PI * 2);
-    ctx.fillStyle = '#C59B27';
+    ctx.roundRect(28, 56, 124, 64, 16);
     ctx.fill();
 
-    // Monogram Text
-    const cleanMono = (monogram || 'SEC').trim().slice(0, 4).toUpperCase();
-    ctx.fillStyle = '#0B2545';
-    ctx.font = `bold ${cleanMono.length > 3 ? 11 : 13}px -apple-system, BlinkMacSystemFont, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(cleanMono, 124, 131);
+    // 3. Printer Status LED Dots (Pink)
+    ctx.fillStyle = '#DB2777';
+    ctx.beginPath();
+    ctx.arc(130, 76, 5.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#F472B6';
+    ctx.beginPath();
+    ctx.arc(114, 76, 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 4. Recessed Paper Output Slot (Pink)
+    ctx.fillStyle = '#DB2777';
+    ctx.beginPath();
+    ctx.roundRect(48, 98, 84, 26, 6);
+    ctx.fill();
+
+    // 5. Bottom Printed Paper (White)
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.roundRect(54, 104, 72, 48, 6);
+    ctx.fill();
+
+    // 6. Printed Document Lines on Paper (Pink)
+    ctx.fillStyle = '#EC4899';
+    ctx.beginPath();
+    ctx.roundRect(66, 118, 48, 5.5, 2.75);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.roundRect(66, 131, 34, 5.5, 2.75);
+    ctx.fill();
 
     return canvas.toDataURL('image/png');
   } catch {
@@ -69,7 +74,8 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
 
 export function syncAppIdentityToDOM(appBrandName: string, appIconMonogram: string): string {
   if (typeof document === 'undefined') return '';
-  const cleanTitle = (appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio';
+  const cleanTitle =
+    (appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio';
   document.title = cleanTitle;
 
   const appleTitleMeta = document.querySelector('meta[name="apple-mobile-web-app-title"]');
