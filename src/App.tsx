@@ -47,7 +47,8 @@ import { ProviderProfileModal } from './components/ProviderProfileModal';
 import { PdfExportModal } from './components/PdfExportModal';
 import { PWAInstallButton } from './components/PWAInstallButton';
 
-const STORAGE_KEY_DOCS = 'lexcorp_sec_saved_docs_v1';
+const STORAGE_KEY_DOCS = 'lexcorp_sec_saved_docs_v2';
+const LEGACY_STORAGE_KEY_DOCS = 'lexcorp_sec_saved_docs_v1';
 const STORAGE_KEY_PROVIDER = 'lexcorp_sec_provider_v1';
 const STORAGE_KEY_THEME = 'lexcorp_sec_theme_v1';
 
@@ -138,20 +139,16 @@ export default function App() {
 
   const [savedDocs, setSavedDocs] = useState<SECDocument[]>(() => {
     try {
+      localStorage.removeItem(LEGACY_STORAGE_KEY_DOCS);
       const raw = localStorage.getItem(STORAGE_KEY_DOCS);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed)) return parsed;
       }
     } catch {
       // ignore storage error
     }
-    return [
-      createDocumentFromPreset('amendment', 'quotation'),
-      createDocumentFromPreset('increase_acs', 'billing'),
-      createDocumentFromPreset('registration', 'invoice'),
-      createDocumentFromPreset('dissolution', 'receipt'),
-    ];
+    return [];
   });
 
   const [activeTab, setActiveTab] = useState<EditorTab>('items');
@@ -755,8 +752,12 @@ export default function App() {
             </select>
           </div>
 
-          {/* Editor Navigation Tabs */}
-          <div className="flex items-center border-b border-slate-200/70 dark:border-white/[0.08] bg-white dark:bg-slate-900 px-2 overflow-x-auto no-scrollbar">
+          {/* Editor Navigation Tabs — Bordered & Highlighted When Selected */}
+          <div
+            role="tablist"
+            aria-label="Document Builder Sections"
+            className="flex flex-wrap items-center gap-1.5 p-2.5 sm:p-3 border-b border-slate-200/80 dark:border-white/[0.08] bg-slate-100/70 dark:bg-slate-950/60"
+          >
             {[
               { id: 'items', label: '1. Fees & Scope' },
               { id: 'client', label: '2. Client & Dates' },
@@ -766,20 +767,25 @@ export default function App() {
               },
               { id: 'checklist', label: '4. Checklist & Notes' },
               { id: 'saved', label: `5. Ledger (${savedDocs.length})` },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id as EditorTab)}
-                className={`min-h-[44px] px-3 py-2.5 text-xs font-semibold border-b-2 transition-colors whitespace-nowrap shrink-0 ${
-                  activeTab === tab.id
-                    ? 'border-slate-900 dark:border-slate-100 text-slate-950 dark:text-white'
-                    : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            ].map((tab) => {
+              const isSelected = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setActiveTab(tab.id as EditorTab)}
+                  className={`flex-1 sm:flex-initial min-h-[40px] px-3 py-2 text-xs font-semibold rounded-xl border transition-all whitespace-nowrap text-center justify-center inline-flex items-center ${
+                    isSelected
+                      ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 border-slate-900 dark:border-slate-100 shadow-sm ring-2 ring-slate-900/15 dark:ring-white/20'
+                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-300/90 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-950 dark:hover:text-white'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </div>
 
           {/* Editor Tab Body */}
@@ -1723,14 +1729,30 @@ export default function App() {
                 </div>
 
                 {filteredLedger.length === 0 ? (
-                  <div className="p-8 text-center border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-950/60 rounded-2xl space-y-2">
+                  <div className="p-8 text-center border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/70 dark:bg-slate-950/60 rounded-2xl space-y-3">
                     <FolderOpen className="w-6 h-6 text-slate-400 mx-auto" />
-                    <div className="font-semibold text-slate-800 dark:text-slate-200">
-                      No Matching SEC Documents
+                    <div className="space-y-1">
+                      <div className="font-semibold text-slate-800 dark:text-slate-200">
+                        {savedDocs.length === 0
+                          ? 'Your Saved Ledger is Empty'
+                          : 'No Matching SEC Documents'}
+                      </div>
+                      <p className="text-slate-500 dark:text-slate-400">
+                        {savedDocs.length === 0
+                          ? 'No pre-loaded documents. Save your current Quotation, Billing, Invoice, or Receipt to store it here.'
+                          : 'Clear the search or type filter above to view your saved records.'}
+                      </p>
                     </div>
-                    <p className="text-slate-500 dark:text-slate-400">
-                      Save your current document or clear the search filter to view saved records.
-                    </p>
+                    {savedDocs.length === 0 && (
+                      <button
+                        type="button"
+                        onClick={handleSaveToLedger}
+                        className="min-h-[38px] inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-950 rounded-xl hover:bg-slate-800 dark:hover:bg-white transition-colors"
+                      >
+                        <Bookmark className="w-3.5 h-3.5" />
+                        <span>Save Current Document ({doc.referenceNo})</span>
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="divide-y divide-slate-200/70 dark:divide-white/[0.08] border border-slate-200/80 dark:border-white/[0.08] rounded-2xl overflow-hidden">
