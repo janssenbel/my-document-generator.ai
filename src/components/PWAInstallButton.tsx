@@ -79,7 +79,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                 )}
                 <div className="min-w-0 flex-1">
                   <div className="font-display text-sm font-bold text-slate-900 dark:text-white truncate">
-                    {appBrandName || 'LexCorp SEC Studio'}
+                    {appBrandName || 'SEC Studio'}
                   </div>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                     180×180px Apple Touch Icon · Badge: {appIconMonogram || 'SEC'}

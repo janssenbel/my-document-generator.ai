@@ -112,7 +112,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
   return (
     <div ref={containerRef} className="w-full">
       {/* A4 Paper Format Bar (Hidden on Print) */}
-      <div className="no-print flex items-center justify-between gap-2 px-3.5 py-2.5 mb-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xs border border-slate-200/80 dark:border-white/[0.08] rounded-xl shadow-2xs text-xs text-slate-600 dark:text-slate-400">
+      <div className="no-print flex items-center justify-between gap-2 px-3.5 py-2.5 mb-3 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/[0.08] rounded-xl shadow-2xs text-xs text-slate-600 dark:text-slate-400">
         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
           <span className="font-mono font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap">
             A4 Portrait

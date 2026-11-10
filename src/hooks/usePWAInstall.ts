@@ -67,7 +67,7 @@ export function generateDynamicAppleTouchIcon(monogram = 'SEC'): string {
 
 export function syncAppIdentityToDOM(appBrandName: string, appIconMonogram: string): string {
   if (typeof document === 'undefined') return '';
-  const cleanTitle = (appBrandName || 'LexCorp SEC Studio').trim();
+  const cleanTitle = (appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio';
   document.title = cleanTitle;
 
   const appleTitleMeta = document.querySelector('meta[name="apple-mobile-web-app-title"]');

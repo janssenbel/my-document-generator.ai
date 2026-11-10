@@ -115,6 +115,10 @@ export default function App() {
     } else {
       root.classList.remove('dark');
     }
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) {
+      themeMeta.setAttribute('content', isDark ? '#0f172a' : '#ffffff');
+    }
     try {
       localStorage.setItem(STORAGE_KEY_THEME, isDark ? 'dark' : 'light');
     } catch {
@@ -125,9 +129,19 @@ export default function App() {
   const [provider, setProvider] = useState<ProviderProfile>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY_PROVIDER);
-      return raw
-        ? { ...DEFAULT_PROVIDER_PROFILE, ...JSON.parse(raw) }
-        : DEFAULT_PROVIDER_PROFILE;
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        const rawBrand =
+          typeof parsed.appBrandName === 'string'
+            ? parsed.appBrandName.replace(/^LexCorp\s*/i, '').trim()
+            : '';
+        return {
+          ...DEFAULT_PROVIDER_PROFILE,
+          ...parsed,
+          appBrandName: rawBrand || DEFAULT_PROVIDER_PROFILE.appBrandName,
+        };
+      }
+      return DEFAULT_PROVIDER_PROFILE;
     } catch {
       return DEFAULT_PROVIDER_PROFILE;
     }
@@ -170,7 +184,7 @@ export default function App() {
     }
     // Sync Studio Brand Name & Dynamic iPhone Apple Touch Icon to DOM
     syncAppIdentityToDOM(
-      provider.appBrandName || 'LexCorp SEC Studio',
+      provider.appBrandName || 'SEC Studio',
       provider.appIconMonogram || 'SEC'
     );
   }, [provider]);
@@ -476,8 +490,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-100/80 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-24 lg:pb-8">
-      {/* Top Bar Contract: Strictly 3 zones separated by gap-8 */}
-      <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-4 sm:gap-8 px-3.5 sm:px-6 py-2.5 sm:py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-b border-slate-200/70 dark:border-white/[0.08] pt-safe">
+      {/* Top Bar Contract: Strictly 3 zones separated by gap-8 (Solid background, zero blur on iPhone Home Screen) */}
+      <header className="no-print sticky top-0 z-30 flex items-center justify-between gap-4 sm:gap-8 px-3.5 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-white/[0.08] pt-safe">
         {/* Zone 1: Single text element wordmark (Editable in Studio Settings) */}
         <a
           href="#studio-settings"
@@ -488,7 +502,7 @@ export default function App() {
           title="Click to edit Studio Brand Name & Settings"
           className="font-display text-sm sm:text-base font-bold tracking-tight text-slate-950 dark:text-white hover:opacity-80 transition-opacity truncate max-w-[190px] sm:max-w-none"
         >
-          {provider.appBrandName || 'LexCorp SEC Studio'}
+          {(provider.appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio'}
         </a>
 
         {/* Zone 2: 4 concise single-line navigation links */}
@@ -552,7 +566,7 @@ export default function App() {
       </header>
 
       {/* Workspace Control Bar (iPhone Portrait Optimized: Compact Segmented Bar + Single-Row Scrollable Quick Actions) */}
-      <div className="no-print bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/70 dark:border-white/[0.08] px-3 sm:px-6 py-2.5 sm:py-3">
+      <div className="no-print bg-white dark:bg-slate-900 border-b border-slate-200/70 dark:border-white/[0.08] px-3 sm:px-6 py-2.5 sm:py-3">
         <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
           {/* Document Type Segmented Switcher */}
           <div className="flex items-center gap-2">
@@ -598,7 +612,7 @@ export default function App() {
 
             {/* In-App PWA / iPhone Home Screen Icon Button */}
             <PWAInstallButton
-              appBrandName={provider.appBrandName || 'LexCorp SEC Studio'}
+              appBrandName={(provider.appBrandName || 'SEC Studio').replace(/^LexCorp\s*/i, '').trim() || 'SEC Studio'}
               appIconMonogram={provider.appIconMonogram || 'SEC'}
               onOpenSettings={() => setIsProviderOpen(true)}
             />
@@ -1839,7 +1853,7 @@ export default function App() {
       {/* Fixed Bottom Tab Bar for iPhone / Mobile Viewports (< 1024px) */}
       <nav
         aria-label="Mobile quick navigation"
-        className="no-print lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200/70 dark:border-white/[0.08] grid grid-cols-5 items-center pb-safe"
+        className="no-print lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-slate-900 border-t border-slate-200/70 dark:border-white/[0.08] grid grid-cols-5 items-center pb-safe"
       >
         <button
           type="button"

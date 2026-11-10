@@ -21,8 +21,8 @@ export default defineConfig(() => {
         ],
         manifest: {
           id: '/my-document-generator.ai/',
-          name: 'LexCorp SEC Document & Billing Studio',
-          short_name: 'LexCorp SEC',
+          name: 'SEC Document & Billing Studio',
+          short_name: 'SEC Studio',
           description:
             'Generate professional Quotations, Billing Statements, Service Invoices, and Acknowledgement Receipts for SEC Philippines corporate transactions.',
           theme_color: '#0f172a',

@@ -77,7 +77,7 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                   1. Studio Brand Name & iPhone Home Screen Icon
                 </div>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed">
-                  Customize the top bar Studio title (e.g. &ldquo;LexCorp SEC Studio&rdquo;) and the
+                  Customize the top bar Studio title (e.g. &ldquo;SEC Studio&rdquo;) and the
                   icon displayed when added to your iPhone Home Screen in Safari.
                 </p>
               </div>
@@ -90,7 +90,7 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                     className="w-14 h-14 rounded-2xl shadow-md"
                   />
                   <span className="text-[10px] font-medium text-slate-600 dark:text-slate-400 mt-1 max-w-[80px] truncate">
-                    {form.appBrandName || 'LexCorp SEC'}
+                    {form.appBrandName || 'SEC Studio'}
                   </span>
                 </div>
               )}
@@ -105,7 +105,7 @@ export const ProviderProfileModal: React.FC<ProviderProfileModalProps> = ({
                   rows={3}
                   value={form.appBrandName}
                   onChange={(e) => updateField('appBrandName', e.target.value)}
-                  placeholder="LexCorp SEC Studio"
+                  placeholder="SEC Studio"
                   className={textareaClass}
                 />
               </div>
