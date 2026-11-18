@@ -103,11 +103,11 @@ export const SEC_TRANSACTION_PRESETS: Record<SECTransactionCategory, SECPresetTe
       ],
       billing: [
         'Please remit 100% of the SEC Statutory Filing Fees and the agreed tranche of the Assistance Fee to initiate eSPARC Payment Assessment settlement.',
-        'Kindly send a copy of the validated bank deposit slip or InstaPay/PESONet confirmation together with BIR Form 2307 (if withholding tax is deducted on the Assistance Fee).',
+        'Kindly send a copy of the validated bank deposit slip or InstaPay/PESONet confirmation upon remittance.',
       ],
       invoice: [
-        'Expanded Withholding Tax (EWT), if applicable, shall be computed strictly on the Professional / Assistance Fee component only. Reimbursable SEC and BIR statutory fees are exempt from EWT.',
-        'Please provide the signed BIR Form 2307 within ten (10) days from payment date.',
+        'Reimbursable SEC and BIR statutory fees are billed as pass-through government advances.',
+        'Please settle within the due date indicated above.',
       ],
       receipt: [
         'This Acknowledgement Receipt confirms receipt of the specified funds for SEC Corporate Registration assistance and statutory fee advances.',
@@ -179,7 +179,7 @@ export const SEC_TRANSACTION_PRESETS: Record<SECTransactionCategory, SECPresetTe
         'Kindly settle the SEC eAMEND statutory filing fees and professional assistance fee tranche to proceed with uploading the notarized amendment documents.',
       ],
       invoice: [
-        'Reimbursable government filing fees and notarial charges are billed at cost and are not subject to Expanded Withholding Tax (EWT).',
+        'Reimbursable government filing fees and notarial charges are billed at cost as pass-through advances.',
       ],
       receipt: [
         'Payment received is applied toward the SEC Amendment engagement as itemized in the Statement of Account.',
@@ -251,7 +251,7 @@ export const SEC_TRANSACTION_PRESETS: Record<SECTransactionCategory, SECPresetTe
         'Statutory SEC Filing Fees and LRF are payable upon issuance of the SEC Payment Assessment Form (PAF) following pre-evaluation by the SEC Financial Specialist.',
       ],
       invoice: [
-        'Withholding tax (EWT) applies exclusively to the SEC Assistance Fee. Statutory SEC Filing Fees and BIR DST are pass-through government remittances.',
+        'Statutory SEC Filing Fees and BIR DST are pass-through government remittances.',
       ],
       receipt: [
         'Received funds for Increase of Authorized Capital Stock processing. Official SEC eOR and BIR Form 2000 proof of payment will be furnished upon filing.',
@@ -547,7 +547,7 @@ export const SEC_TRANSACTION_PRESETS: Record<SECTransactionCategory, SECPresetTe
         'Please remit payment to the designated bank account and send proof of transfer for immediate processing.',
       ],
       invoice: [
-        'Expanded Withholding Tax (EWT), if any, applies only to the Professional Assistance Fee.',
+        'Professional fees billed for SEC Corporate Regulatory & Compliance Assistance.',
       ],
       receipt: [
         'Payment received with thanks for SEC Corporate Assistance services.',

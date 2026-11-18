@@ -284,9 +284,22 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
 
             {/* Special Formal Acknowledgement Block when Document Type is Receipt */}
             {doc.docType === 'receipt' && (
-              <div className="my-4 p-4 bg-slate-50 border border-slate-200">
-                <div className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
-                  Official Payment Certification
+              <div className="my-4 p-4 bg-[#0B2545]/[0.03] border border-[#0B2545]/25 border-l-4 border-l-[#C59B27]">
+                <div className="flex items-center justify-between gap-2 mb-1.5">
+                  <div className="text-[10.5px] font-bold text-[#0B2545] uppercase tracking-wider">
+                    Official Payment Certification
+                  </div>
+                  <span
+                    className={`px-2 py-0.5 text-[9.5px] font-mono font-bold uppercase tracking-wider ${
+                      remainingAfterReceipt === 0
+                        ? 'bg-[#0B2545] text-[#E5B842]'
+                        : 'bg-[#C59B27]/25 text-[#0B2545]'
+                    }`}
+                  >
+                    {remainingAfterReceipt === 0
+                      ? 'FULL SETTLEMENT — PAID IN FULL'
+                      : `PARTIAL / TRANCHE PAYMENT · BALANCE: ${formatPHP(remainingAfterReceipt)}`}
+                  </span>
                 </div>
                 <p className="text-[12.5px] text-slate-800 leading-relaxed">
                   RECEIVED from{' '}
@@ -297,7 +310,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                     {amountInWords}
                   </strong>{' '}
                   (
-                  <strong className="font-mono font-bold text-slate-950 tabular-nums">
+                  <strong className="font-mono font-bold text-[#0B2545] tabular-nums">
                     {formatPHP(effectiveAmountReceived)}
                   </strong>
                   ), Philippine Currency, representing payment for{' '}
@@ -333,6 +346,47 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                     </div>
                   </div>
                 </div>
+
+                {doc.paymentHistory && doc.paymentHistory.length > 0 && (
+                  <div className="mt-3 pt-2.5 border-t border-slate-200">
+                    <div className="text-[10px] font-bold text-[#0B2545] uppercase tracking-wider mb-1.5">
+                      Recorded Payments Made ({doc.paymentHistory.length})
+                    </div>
+                    <table className="w-full text-[11px] border-collapse">
+                      <thead>
+                        <tr className="border-b border-slate-200 text-left text-slate-500">
+                          <th className="py-1 pr-2 font-medium">Receipt No.</th>
+                          <th className="py-1 px-2 font-medium">Date</th>
+                          <th className="py-1 px-2 font-medium">Channel / Ref No.</th>
+                          <th className="py-1 px-2 font-medium">Milestone / Purpose</th>
+                          <th className="py-1 pl-2 text-right font-medium">Amount Paid</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {doc.paymentHistory.map((p) => (
+                          <tr key={p.id}>
+                            <td className="py-1 pr-2 font-mono font-semibold text-[#0B2545]">
+                              {p.receiptNo}
+                            </td>
+                            <td className="py-1 px-2 font-mono text-slate-600 tabular-nums">
+                              {p.paymentDate}
+                            </td>
+                            <td className="py-1 px-2 text-slate-700">
+                              {p.issuingBank || p.paymentMethod}
+                              {p.referenceNo ? ` (${p.referenceNo})` : ''}
+                            </td>
+                            <td className="py-1 px-2 text-slate-600 truncate max-w-[180px]">
+                              {p.paymentPurpose}
+                            </td>
+                            <td className="py-1 pl-2 text-right font-mono font-semibold text-slate-900 tabular-nums">
+                              {formatPHP(p.amountPaid)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             )}
 
@@ -510,36 +564,11 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ doc, provider 
                 )}
               </div>
 
-              {/* Right column: Financial & Tax Breakdown */}
+              {/* Right column: Financial Breakdown */}
               <div className="col-span-6 space-y-1 text-xs">
                 <div className="flex justify-between py-0.5 text-slate-700">
-                  <span>Professional / Assistance Fees (Net of VAT):</span>
+                  <span>Professional / Assistance Fees:</span>
                   <span className="font-mono font-medium text-slate-900 tabular-nums">
-                    {formatPHP(totals.profFeeNetOfVat)}
-                  </span>
-                </div>
-
-                {doc.taxConfig.taxMode !== 'non_vat' && (
-                  <div className="flex justify-between py-0.5 text-slate-600">
-                    <span>Add: 12% Value-Added Tax (VAT):</span>
-                    <span className="font-mono tabular-nums">{formatPHP(totals.vatAmount)}</span>
-                  </div>
-                )}
-
-                {doc.taxConfig.ewtRate > 0 && (
-                  <div className="flex justify-between py-0.5 text-slate-600">
-                    <span>
-                      Less: {doc.taxConfig.ewtRate}% Expanded Withholding Tax (BIR 2307):
-                    </span>
-                    <span className="font-mono text-rose-700 tabular-nums">
-                      ({formatPHP(totals.ewtAmount)})
-                    </span>
-                  </div>
-                )}
-
-                <div className="flex justify-between py-1 border-t border-slate-200 font-medium text-slate-800">
-                  <span>Net Professional Fee Receivable:</span>
-                  <span className="font-mono tabular-nums">
                     {formatPHP(totals.profFeeNetReceivable)}
                   </span>
                 </div>

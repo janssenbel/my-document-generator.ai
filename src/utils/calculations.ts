@@ -40,23 +40,11 @@ export function calculateDocumentTotals(doc: SECDocument): DocumentTotals {
 
   const totalReimbursables = secStatutoryTotal + birTaxDstTotal + outOfPocketTotal;
 
-  let profFeeNetOfVat = profFeeRaw;
-  let vatAmount = 0;
-  let profFeeGross = profFeeRaw;
-
-  if (doc.taxConfig.taxMode === 'vat_exclusive') {
-    profFeeNetOfVat = profFeeRaw;
-    vatAmount = profFeeRaw * 0.12;
-    profFeeGross = profFeeNetOfVat + vatAmount;
-  } else if (doc.taxConfig.taxMode === 'vat_inclusive') {
-    profFeeGross = profFeeRaw;
-    profFeeNetOfVat = profFeeRaw / 1.12;
-    vatAmount = profFeeGross - profFeeNetOfVat;
-  }
-
-  const ewtRateDecimal = (doc.taxConfig.ewtRate || 0) / 100;
-  const ewtAmount = profFeeNetOfVat * ewtRateDecimal;
-  const profFeeNetReceivable = profFeeGross - ewtAmount;
+  const profFeeNetOfVat = profFeeRaw;
+  const vatAmount = 0;
+  const profFeeGross = profFeeRaw;
+  const ewtAmount = 0;
+  const profFeeNetReceivable = profFeeRaw;
 
   const fullGrossContract = profFeeGross + totalReimbursables;
   const fullNetPayable = profFeeNetReceivable + totalReimbursables;

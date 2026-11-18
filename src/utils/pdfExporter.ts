@@ -271,16 +271,30 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
       `RECEIVED from ${doc.client.companyName} (TIN: ${doc.client.tin || 'N/A'}), with principal office at ${doc.client.address}, the sum of ${amountInWords} (${formatPdfCurrency(effectiveAmountReceived)}), Philippine Currency, representing payment for ${doc.receiptDetails.paymentPurpose || doc.transactionTitle}.`
     );
     const certLines = pdf.splitTextToSize(certText, contentW - 8);
-    const boxH = certLines.length * 4 + 17;
+    const historyItems = doc.paymentHistory || [];
+    const historyH = historyItems.length > 0 ? 6 + historyItems.length * 4 : 0;
+    const boxH = certLines.length * 4 + 17 + historyH;
 
-    pdf.setFillColor(248, 250, 252);
-    pdf.setDrawColor(203, 213, 225);
+    pdf.setFillColor(245, 248, 252);
+    pdf.setDrawColor(11, 37, 69);
+    pdf.setLineWidth(0.3);
     pdf.rect(marginX, y, contentW, boxH, 'FD');
+
+    // Gold left accent bar
+    pdf.setFillColor(197, 155, 39);
+    pdf.rect(marginX, y, 1.5, boxH, 'F');
 
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(7.5);
-    pdf.setTextColor(100, 116, 139);
+    pdf.setTextColor(11, 37, 69);
     pdf.text('OFFICIAL PAYMENT CERTIFICATION', marginX + 4, y + 4.5);
+
+    const statusBadgeText =
+      remainingAfterReceipt === 0
+        ? 'FULL SETTLEMENT - PAID IN FULL'
+        : `PARTIAL / TRANCHE PAYMENT (BALANCE: ${formatPdfCurrency(remainingAfterReceipt)})`;
+    pdf.setFontSize(7);
+    pdf.text(statusBadgeText, pageW - marginX - 3, y + 4.5, { align: 'right' });
 
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(8.5);
@@ -297,6 +311,31 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
       marginX + 4,
       metaRowY
     );
+
+    if (historyItems.length > 0) {
+      let histY = metaRowY + 4.5;
+      pdf.setDrawColor(203, 213, 225);
+      pdf.setLineWidth(0.2);
+      pdf.line(marginX + 4, histY - 2.5, pageW - marginX - 4, histY - 2.5);
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(7);
+      pdf.setTextColor(11, 37, 69);
+      pdf.text(`RECORDED PAYMENTS MADE (${historyItems.length}):`, marginX + 4, histY);
+      histY += 3.8;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setTextColor(51, 65, 85);
+      historyItems.forEach((p) => {
+        const lineStr = cleanPdfText(
+          `${p.receiptNo}  |  ${p.paymentDate}  |  ${p.issuingBank || p.paymentMethod}${p.referenceNo ? ' (' + p.referenceNo + ')' : ''}  |  ${p.paymentPurpose}`
+        );
+        const clipped = pdf.splitTextToSize(lineStr, contentW - 42)[0] || lineStr;
+        pdf.text(clipped, marginX + 4, histY);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(formatPdfCurrency(p.amountPaid), pageW - marginX - 4, histY, { align: 'right' });
+        pdf.setFont('helvetica', 'normal');
+        histY += 3.8;
+      });
+    }
 
     y += boxH + 5;
   }
@@ -487,17 +526,7 @@ export function buildA4VectorPdf(doc: SECDocument, provider: ProviderProfile): G
     rightTotY += isBold ? 5 : 4.2;
   };
 
-  addTotalRow('Professional / Assistance Fees (Net):', formatPdfCurrency(totals.profFeeNetOfVat));
-  if (doc.taxConfig.taxMode !== 'non_vat') {
-    addTotalRow('Add: 12% Value-Added Tax (VAT):', formatPdfCurrency(totals.vatAmount));
-  }
-  if (doc.taxConfig.ewtRate > 0) {
-    addTotalRow(
-      `Less: ${doc.taxConfig.ewtRate}% Expanded Withholding Tax:`,
-      `(${formatPdfCurrency(totals.ewtAmount)})`
-    );
-  }
-  addTotalRow('Net Professional Fee Receivable:', formatPdfCurrency(totals.profFeeNetReceivable), true);
+  addTotalRow('Professional / Assistance Fees:', formatPdfCurrency(totals.profFeeNetReceivable));
   addTotalRow('SEC Statutory Filing Fees & LRF:', formatPdfCurrency(totals.secStatutoryTotal));
   if (totals.birTaxDstTotal > 0) {
     addTotalRow('BIR Documentary Stamp Tax (DST):', formatPdfCurrency(totals.birTaxDstTotal));

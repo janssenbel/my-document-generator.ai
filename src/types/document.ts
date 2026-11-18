@@ -76,6 +76,17 @@ export interface ReceiptDetails {
   overrideAutoAmount: boolean;
 }
 
+export interface PaymentRecord {
+  id: string;
+  receiptNo: string;
+  paymentDate: string;
+  paymentMethod: ReceiptDetails['paymentMethod'];
+  issuingBank: string;
+  referenceNo: string;
+  paymentPurpose: string;
+  amountPaid: number;
+}
+
 export interface SECDocument {
   id: string;
   docType: DocumentType;
@@ -93,5 +104,6 @@ export interface SECDocument {
   notesAndTerms: string[];
   taxConfig: TaxConfig;
   receiptDetails: ReceiptDetails;
+  paymentHistory?: PaymentRecord[];
   updatedAt: string;
 }
